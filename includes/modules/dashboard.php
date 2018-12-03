@@ -15,7 +15,7 @@
                     <button class="button deactivate button-secondary" <?php if (!mwww_has_activate_module($module_key)) { ?> style="display: none;" <?php } ?>
                        type="button" onclick="mww_deactivate('<?php echo $module_key ?>',this)"><?php esc_html_e('Deactivate', 'website-webkit'); ?></button>
                     <a class="button"
-                       href="<?php echo MWW_PLUGIN_PATH; ?>mww-admin-function.php?action=config"><?php esc_html_e('Settings', 'website-webkit'); ?></a>
+                       href="<?php echo esc_url(MWW()->plugin_url()).'/'.$module_key?>/action=config"><?php esc_html_e('Settings', 'website-webkit'); ?></a>
 
             </div>
         </div>
