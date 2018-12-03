@@ -4,28 +4,45 @@
 var mww_website_ids_global_object = {"ajax_url":"http://localhost/wordpress/wp-admin/admin-ajax.php"};
 $ = jQuery;
 function mww_activate (moduleId,thisObj) {
-    $.post(ajaxurl,{
-            'action': 'activate',
-            'data':   {module_id:moduleId}
+    $.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {action: 'activate', module_id: moduleId},
+        beforeSend: function () {
+            $(thisObj).text('Activating...');
+            $(thisObj).attr('disabled','true');
+            $(thisObj).prepend('<i class="mww_loader dashicons dashicons-update"></i>');
+
+
+
         },
-        function(response){
-            $(thisObj).css('display','none');
+        success: function (response) {
+            $(thisObj).css('display', 'none');
             $(thisObj).closest('div').find('.deactivate').removeAttr('style');
+            $(thisObj).html('Activate');
+            $(thisObj).removeAttr('disabled');
+            $(thisObj).find('.mww_loader').hide();
         }
-
-
-    );
+    });
 }
 
 
 function mww_deactivate (moduleId,thisObj) {
-    $.post(ajaxurl,{
-            'action': 'deactivate',
-            'data':   {module_id:moduleId}
+    $.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {action: 'deactivate', module_id: moduleId},
+        beforeSend: function () {
+            $(thisObj).html('Deactivating...');
+            $(thisObj).attr('disabled','true');
+            $(thisObj).prepend('<i class="mww_loader dashicons dashicons-update"></i>');
         },
-        function(response){
-            $(thisObj).css('display','none');
+        success: function (response) {
+            $(thisObj).css('display', 'none');
             $(thisObj).closest('div').find('.activate').removeAttr('style');
+            $(thisObj).html('Deactivate');
+            $(thisObj).removeAttr('disabled');
+            $(thisObj).prev().prev('.mww_loader').hide();
         }
-    );
+    });
 }

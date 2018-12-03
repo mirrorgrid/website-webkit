@@ -35,13 +35,12 @@ function mww_admin_menu_option()
 
 function mww_activate()
 {
-
-    if (array_key_exists('action', $_POST) && $_POST['action'] == 'activate' && $_POST['data']['module_id']) {
-        mwww_activate_module($_POST['data']['module_id']);
-        return true;
-    } elseif (array_key_exists('action', $_POST) && $_POST['action'] == 'deactivate' && $_POST['data']['module_id']) {
-        mwww_deactivate_module($_POST['data']['module_id']);
-        return true;
+    if (array_key_exists('action', $_POST) && $_POST['action'] == 'activate' && $_POST['module_id']) {
+        mwww_activate_module($_POST['module_id']);
+        echo 'Activated';
+    } elseif (array_key_exists('action', $_POST) && $_POST['action'] == 'deactivate' && $_POST['module_id']) {
+        mwww_deactivate_module($_POST['module_id']);
+        echo 'Deactivated';
     }
 
 }
@@ -72,16 +71,15 @@ function mww_register_modules()
     return apply_filters(
         'mg-mww-register-modules',
         array(
-
             'webkit-ids' => array(
                 'name' => __('Webkit IDS', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
-                'icon' => 'icon.png'
+                'icon' => 'webkit-id.png'
             ),
             'social-icons' => array(
                 'name' => __('Social Icon', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
-                'icon' => 'icon.png'
+                'icon' => 'social.png'
             )
         )
 
@@ -122,7 +120,6 @@ function mwww_deactivate_module($module_id)
 
         $all_active_unique_modules = array_diff($active_modules, array($module_id));
         update_option('mg-mww-activate-modules', $all_active_unique_modules);
-
     }
 
 }
