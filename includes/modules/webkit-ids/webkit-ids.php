@@ -6,24 +6,36 @@ class MWW_Webkit_Ids
     function __construct()
     {
         $this->mww_webkit_ids_init();
-
-
+        $this->mww_init_hook();
     }
 
+    function mww_init_hook()
+    {
+        add_action('enable_post_types',array($this,'mww_add_post_type_enabled'));
+    }
 
+    function mww_add_post_type_enabled()
+    {
+        if (isset($_POST) && isset($_POST['mww_all_types_list']) && $_POST['mww_all_types_list']!==null){
+            $allTypes = $_POST['mww_all_types_list'];
+            update_option('mww_enable_all_post_taxonomies_users_media_types',$allTypes);
+            include_once MWW_PLUGIN_PATH . 'notification/notification.php';
+        }
+
+    }
 
 
     public function mww_webkit_ids_init()
     {
 
         $settings = mww_get_active_modules();
+        $checkTypeEnabled = get_option('mww_enable_all_post_taxonomies_users_media_types');
             // For Media Management
-            if( is_array( $settings ) && in_array( 'webkit-ids', $settings )) {
+            if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array('media',$checkTypeEnabled)) {
 
                 add_action( 'manage_media_columns', array( $this, 'mww_webkit_ids_column' ) );
                 add_filter( 'manage_media_custom_column', array( $this, 'mww_webkit_ids_value' ) , 10 , 3 );
             }
-
             // For Link Management
             add_action( 'manage_link_custom_column', array( $this, 'mww_webkit_ids_value' ), 10, 2 );
             add_filter( 'manage_link-manager_columns', array( $this, 'mww_webkit_ids_column' ) );
@@ -34,9 +46,8 @@ class MWW_Webkit_Ids
 
             // For Category, Tags and other custom taxonomies Management
             foreach( get_taxonomies() as $taxonomy ) {
-                if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) ) {
+                if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array($taxonomy,$checkTypeEnabled) ) {
                     add_action( "manage_edit-${taxonomy}_columns" ,  array( $this, 'mww_webkit_ids_column' ) );
-                    add_action( "manage_${taxonomy}_custom_column", array($this, 'mww_webkit_ids_column' ), 10, 3 );
                     add_filter( "manage_${taxonomy}_custom_column" , array( $this, 'mww_webkit_ids_return_value' ) , 10 , 3 );
                     if( version_compare($GLOBALS['wp_version'], '3.0.999', '>') ) {
                         add_filter( "manage_edit-${taxonomy}_sortable_columns" , array( $this, 'mww_webkit_ids_column' ) );
@@ -45,7 +56,7 @@ class MWW_Webkit_Ids
             }
 
             foreach( get_post_types() as $ptype ) {
-                if( is_array( $settings ) && in_array( 'webkit-ids', $settings )){
+                if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array($ptype,$checkTypeEnabled)){
                     add_action( "manage_edit-${ptype}_columns" ,array( $this, 'mww_webkit_ids_column' ) );
                     add_action( "manage_${ptype}_posts_custom_column", array( $this, 'mww_webkit_ids_value' ), 10, 2 );
                     add_filter( "manage_${ptype}_posts_custom_column" , array( $this, 'mww_webkit_ids_value' ) , 10 , 3 );
@@ -56,7 +67,7 @@ class MWW_Webkit_Ids
             }
 
             // For User Management
-            if( is_array( $settings ) && in_array( 'webkit-ids', $settings )){
+            if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array('users',$checkTypeEnabled)){
                 add_action( 'manage_users_columns', array( $this, 'mww_webkit_ids_column' ) );
                 add_action( 'manage_users_custom_column', array( $this, 'mww_webkit_ids_value' ), 10, 3 );
                 add_filter( 'manage_users_custom_column', array( $this, 'mww_webkit_ids_return_value' ), 10, 3 );
@@ -66,7 +77,7 @@ class MWW_Webkit_Ids
             }
 
             // For Comment Management
-            if( is_array( $settings ) && in_array( 'webkit-ids', $settings )){
+            if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array('comments',$checkTypeEnabled)){
                 add_action( 'manage_edit-comments_columns', array( $this, 'mww_webkit_ids_column' ) );
                 add_action( 'manage_comments_custom_column', array( $this, 'mww_webkit_ids_value' ), 10, 3 );
                 if( version_compare($GLOBALS['wp_version'], '3.0.999', '>') ) {
@@ -96,6 +107,8 @@ class MWW_Webkit_Ids
         }
         return $value;
     }
+
+
 }
 
 

@@ -3,7 +3,7 @@
  * Plugin Name: Website Webkit
  * Plugin URI: https://wesite-webkit.com/
  * Description: A Website Webkit plugin that helps you manage anything. Beautifully.
- * Version: 1.0.0
+ * Version: 0.0.0
  * Author: Bhuwan Ojha
  * Author URI: https://bhuwanojha.com.np
  * Text Domain: website-webkit

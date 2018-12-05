@@ -39,4 +39,4 @@ if ( ! class_exists( 'MWW_Admin_Dashboard', false ) ) :
 
     }
 endif;
-return new WC_Admin_Dashboard();
+return new MWW_Admin_Dashboard();

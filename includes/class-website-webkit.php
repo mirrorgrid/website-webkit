@@ -3,7 +3,7 @@
  * Website Webkit setup
  *
  * @package Website Webkit
- * @since   3.2.0
+ * @since   1.0.0
  */
 
 defined('ABSPATH') || exit;
@@ -102,6 +102,7 @@ final class Website_Webkit
     function include_modules()
     {
         do_action('mww-modules-includes');
+        do_action('mww_module_config_hook');
     }
 
     /**

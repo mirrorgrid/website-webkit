@@ -7,28 +7,30 @@ if (!defined('ABSPATH')) {
 function mww_admin_menu_option()
 {
     add_menu_page(
-        $page_title = MWW_PLUGIN_NAME,
-        $menu_title = MWW_PLUGIN_NAME,
-        $capability = 'manage_options',
-        $menu_slug = 'dashboard',
+        MWW_PLUGIN_NAME,
+        MWW_PLUGIN_NAME,
+        'manage_options',
+        $menu_slug = 'website-webkit',
         $callback_function = 'mww_get_plugin_pages',
         $icon_url = '',
         $position = 10
     );
 
     add_submenu_page(
-        $menu_slug,
-        $submenu_page_title = MWW_PLUGIN_NAME . '-' . 'Dashboard',
-        $submenu_title = 'Dashboard',
+        'website-webkit',
+         MWW_PLUGIN_NAME . '-' . 'Dashboard',
+        'Dashboard',
         'manage_options',
-        $submenu_slug = 'dashboard'
+        'dashboard',
+        'mww_get_plugin_pages'
     );
     add_submenu_page(
-        $menu_slug,
-        $submenu_page_title = MWW_PLUGIN_NAME . '-' . 'Setting',
-        $submenu_title = 'Setting',
+        'website-webkit',
+        MWW_PLUGIN_NAME . '-' . 'Setting',
+        'Setting',
         'manage_options',
-        $submenu_slug = 'admin.php?page=setting'
+        'setting',
+        'mww_get_plugin_pages'
     );
 
 }
@@ -50,14 +52,16 @@ add_action('wp_ajax_nopriv_activate', 'mww_activate');
 add_action('wp_ajax_deactivate', 'mww_activate'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_deactivate', 'mww_activate');
 
-
-
-
 add_action('admin_menu', 'mww_admin_menu_option');
+
 function mww_get_plugin_pages()
 {
-    if (array_key_exists('page', $_GET) && file_exists(MWW_PLUGIN_PATH . 'includes/modules/' . $_GET['page'] . '.php')) {
-        include_once MWW_PLUGIN_PATH . 'includes/modules/' . $_GET['page'] . '.php';
+    $page = $_GET['page'];
+    if ($page == 'website-webkit'){
+        $page = 'dashboard';
+    }
+    if (array_key_exists('page', $_GET) && file_exists(MWW_PLUGIN_PATH . 'includes/modules/' . $page . '.php')) {
+        include_once MWW_PLUGIN_PATH . 'includes/modules/' . $page . '.php';
     }
 
 }
@@ -126,9 +130,7 @@ function mwww_deactivate_module($module_id)
 
 function mww_get_active_modules()
 {
-    // ['webkit-ids','social-icons','test-abc']
     $active_modules = get_option('mg-mww-activate-modules', array());
-
     return apply_filters('mg-mww-active-modules', $active_modules);
 
 }
