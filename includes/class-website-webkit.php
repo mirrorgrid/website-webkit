@@ -87,6 +87,7 @@ final class Website_Webkit
         $this->define_constants();
         $this->includes();
         $this->init_hooks();
+        $this->script_register();
     }
 
     /**
@@ -97,6 +98,7 @@ final class Website_Webkit
     private function init_hooks()
     {
         add_action('init', array($this, 'include_modules'));
+
     }
 
     function include_modules()
@@ -182,7 +184,7 @@ final class Website_Webkit
         /**
          * Class autoloader.
          */
-        //include_once MWW_ABSPATH . 'includes/';
+        include_once MWW_ABSPATH . 'notification/notification.php';
 
         /**
          * Interfaces.
@@ -247,10 +249,10 @@ final class Website_Webkit
     /**
      * Init Website Webkit when WordPress Initialises.
      */
-    public function init()
+    public function script_register()
     {
 
-
+       // do_action('website_webkit_script_register');
     }
 
 
@@ -283,6 +285,9 @@ final class Website_Webkit
     {
         return apply_filters('website_webkit_template_path', 'website_webkit_');
     }
+
+
+
 
     /**
      * Get Ajax URL.

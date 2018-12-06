@@ -26,12 +26,16 @@ if (isset($_GET['tab'])) {
         <div class="wrapper">
             <h4><u><?php esc_html_e('Select Custom Types to enable webkit ids on them.', 'website-webkit'); ?></u></h4>
             <form action="" method="post">
+                <input type="hidden" name="webkit_ids_nonce" value="<?php echo wp_create_nonce('webkit-ids-nonce');?>">
             <select class="select2-class js-example-responsive" multiple="multiple" style="width: 30%"
                     name="mww_all_types_list[]" multiple="multiple">
                 <optgroup label="Post Types">
                     <?php $post_type = get_post_types();
                     $taxonomies = get_taxonomies();
                     $enabledType = get_option('mww_enable_all_post_taxonomies_users_media_types');
+                    if ($enabledType==null){
+                        $enabledType = array();
+                    }
                     foreach ($post_type as $post_value) {
                         ?>
                         <option value="<?php echo $post_value; ?>" <?php if (in_array($post_value,$enabledType)){?>selected <?php } ?>><?php echo esc_html_e(str_replace('_', ' ', ucwords(str_replace('-', ' ', $post_value)))); ?></option>
@@ -50,6 +54,9 @@ if (isset($_GET['tab'])) {
                 </optgroup>
                 <optgroup label="Comments">
                     <option value="comments" <?php if (in_array('comments',$enabledType)){?>selected <?php } ?>><?php esc_html_e('Comment', 'website-webkit'); ?></option>
+                </optgroup>
+                <optgroup label="Remove From All">
+                    <option value="none" <?php if (in_array('none',$enabledType)){?>selected <?php } ?>><?php esc_html_e('None', 'website-webkit'); ?></option>
                 </optgroup>
             </select>
             <div class="wrap">

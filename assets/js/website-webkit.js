@@ -4,11 +4,12 @@
 
 var mww_website_ids_global_object = {"ajax_url":"http://localhost/wordpress/wp-admin/admin-ajax.php"};
 $ = jQuery;
-function mww_activate (moduleId,thisObj) {
+function mww_activate (moduleId,nonce,thisObj) {
+    debugger;
     $.ajax({
         url: ajaxurl,
         type: 'POST',
-        data: {action: 'activate', module_id: moduleId},
+        data: {action: 'activate', module_id: moduleId,security:nonce},
         beforeSend: function () {
             $(thisObj).text('Activating...');
             $(thisObj).attr('disabled','true');
@@ -28,11 +29,11 @@ function mww_activate (moduleId,thisObj) {
 }
 
 
-function mww_deactivate (moduleId,thisObj) {
+function mww_deactivate (moduleId,nonce,thisObj) {
     $.ajax({
         url: ajaxurl,
         type: 'POST',
-        data: {action: 'deactivate', module_id: moduleId},
+        data: {action: 'deactivate', module_id: moduleId,security:nonce},
         beforeSend: function () {
             $(thisObj).html('Deactivating...');
             $(thisObj).attr('disabled','true');

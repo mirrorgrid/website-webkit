@@ -7,19 +7,28 @@ class MWW_Webkit_Ids
     {
         $this->mww_webkit_ids_init();
         $this->mww_init_hook();
+
     }
 
     function mww_init_hook()
     {
         add_action('enable_post_types',array($this,'mww_add_post_type_enabled'));
+        //add_action('website_webkit_script_register',array($this, 'website_webkit_script_register'));
+    }
+    function website_webkit_script_register(){
+
     }
 
     function mww_add_post_type_enabled()
     {
-        if (isset($_POST) && isset($_POST['mww_all_types_list']) && $_POST['mww_all_types_list']!==null){
-            $allTypes = $_POST['mww_all_types_list'];
-            update_option('mww_enable_all_post_taxonomies_users_media_types',$allTypes);
-            include_once MWW_PLUGIN_PATH . 'notification/notification.php';
+        if (isset($_POST) && isset($_POST['webkit_ids_nonce']) && isset($_POST['mww_all_types_list'])){
+            if (wp_verify_nonce($_POST['webkit_ids_nonce'],'webkit-ids-nonce')) {
+                $allTypes = $_POST['mww_all_types_list'];
+                update_option('mww_enable_all_post_taxonomies_users_media_types', $allTypes);
+                do_action('my-success-notice','Webkit id setting updated');
+            }else{
+                do_action('my-error-notice','Nonce not verified.');
+            }
         }
 
     }
@@ -30,6 +39,9 @@ class MWW_Webkit_Ids
 
         $settings = mww_get_active_modules();
         $checkTypeEnabled = get_option('mww_enable_all_post_taxonomies_users_media_types');
+        if ($checkTypeEnabled == null){
+            $checkTypeEnabled = array();
+        }
             // For Media Management
             if( is_array( $settings ) && in_array( 'webkit-ids', $settings ) && in_array('media',$checkTypeEnabled)) {
 

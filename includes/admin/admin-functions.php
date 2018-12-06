@@ -37,12 +37,17 @@ function mww_admin_menu_option()
 
 function mww_activate()
 {
-    if (array_key_exists('action', $_POST) && $_POST['action'] == 'activate' && $_POST['module_id']) {
-        mwww_activate_module($_POST['module_id']);
-        echo 'Activated';
-    } elseif (array_key_exists('action', $_POST) && $_POST['action'] == 'deactivate' && $_POST['module_id']) {
-        mwww_deactivate_module($_POST['module_id']);
-        echo 'Deactivated';
+    if (wp_verify_nonce($_POST['security'],'mww-ajax-nonce')) {
+        print_r($_POST['security']);
+        if (array_key_exists('action', $_POST) && $_POST['action'] == 'activate' && $_POST['module_id']) {
+            mwww_activate_module($_POST['module_id']);
+            echo 'Activated';
+        } elseif (array_key_exists('action', $_POST) && $_POST['action'] == 'deactivate' && $_POST['module_id']) {
+            mwww_deactivate_module($_POST['module_id']);
+            echo 'Deactivated';
+        }
+    }else{
+        do_action('my-error-notice','Nonce not verified');
     }
 
 }
