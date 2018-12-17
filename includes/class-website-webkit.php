@@ -287,13 +287,4 @@ final class Website_Webkit
     }
 
 
-
-
-    /**
-     * Get Ajax URL.
-     *
-     * @return string
-     */
-
-
 }

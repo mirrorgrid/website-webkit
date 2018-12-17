@@ -25,7 +25,7 @@ class MWW_Webkit_Ids
             if (wp_verify_nonce($_POST['webkit_ids_nonce'],'webkit-ids-nonce')) {
                 $allTypes = $_POST['mww_all_types_list'];
                 update_option('mww_enable_all_post_taxonomies_users_media_types', $allTypes);
-                do_action('my-success-notice','Webkit id setting updated');
+                do_action('my-success-notice','Webkit id setting updated.');
             }else{
                 do_action('my-error-notice','Nonce not verified.');
             }

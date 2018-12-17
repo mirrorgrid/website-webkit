@@ -6,15 +6,17 @@ if (!defined('ABSPATH')) {
 
 function mww_admin_menu_option()
 {
-    add_menu_page(
+   add_menu_page(
         MWW_PLUGIN_NAME,
         MWW_PLUGIN_NAME,
         'manage_options',
         $menu_slug = 'website-webkit',
         $callback_function = 'mww_get_plugin_pages',
-        $icon_url = '',
+        $icon_url = 'dashicons-chart-pie',
         $position = 10
     );
+
+
 
     add_submenu_page(
         'website-webkit',
@@ -32,6 +34,8 @@ function mww_admin_menu_option()
         'setting',
         'mww_get_plugin_pages'
     );
+
+    remove_submenu_page('website-webkit','website-webkit');
 
 }
 
@@ -89,7 +93,15 @@ function mww_register_modules()
                 'name' => __('Social Icon', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
                 'icon' => 'social.png'
+            ),
+
+            'gutenberg-blocks' => array(
+                'name' => __('Gutenberg Blocks', 'website-webkit'),
+                'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
+                'icon' => 'gutenberg.png'
             )
+
+
         )
 
     );
@@ -129,6 +141,9 @@ function mwww_deactivate_module($module_id)
 
         $all_active_unique_modules = array_diff($active_modules, array($module_id));
         update_option('mg-mww-activate-modules', $all_active_unique_modules);
+        if ($module_id == 'gutenberg-blocks'){
+            apply_filters('deactivate_gutenberg_block');
+        }
     }
 
 }
@@ -166,7 +181,6 @@ function mww_modules_includes()
     }
 
 }
-
 
 
 

@@ -68,11 +68,65 @@ if (isset($_GET['tab'])) {
     </div>
     </div>
 
-<?php } ?>
+<?php }else if($active_tab == 'social-icons' && in_array('social-icons',mww_get_active_modules())) { ?>
+    <div class="wrap popover__wrapper">
+        <button type="button" class="button add-popup popover__title" data-toggle="popover" data-placement="bottom" >
+            <svg aria-hidden="true" role="img" focusable="false" class="dashicon dashicons-insert" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path d="M10 1c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 16c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7-3.1 7-7 7zm1-11H9v3H6v2h3v3h2v-3h3V9h-3V6z"></path>
+            </svg>
+        </button>
+        <div class="push popover__content">
+           <div class="wrap">
+            <button type="button" class="button"><span class="dashicons dashicons-facebook"></span></span> </button>
+            <button type="button" class="button"><span class="dashicons dashicons-twitter"></span></span> </button>
+            <button type="button" class="button"><span class="dashicons dashicons-googleplus"></span></span> </button>
+           </div>
+        </div>
+
 
     </div>
+    <?php } ?>
+<?php if ($active_tab == 'gutenberg-blocks' && in_array('gutenberg-blocks',mww_get_active_modules())) { ?>
+    <div id="gutenberg_blocks_main-menu">
+        <div id="gutenberg_blocks_main-menu__header">
+            <div class="gutenberg_blocks_header-container">
+                <div class="ub_collection_filter">
+                    <span class="filter-action active" data-filter-status="all"><?php esc_html_e( 'All', 'gutenberg-blocks' ); ?></span>
+                    <span class="filter-action" data-filter-status="enabled"><?php esc_html_e( 'Enabled', 'gutenberg-blocks' ); ?></span>
+                    <span class="filter-action" data-filter-status="disabled"><?php esc_html_e( 'Disabled', 'gutenberg-blocks' ); ?></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="gutenberg_blocks_main-menu__body">
+
+            <div class="gutenberg_blocks_collection <?php echo count( get_option( 'gutenberg_blocks', [] ) ) === 0 ? 'empty' : ''; ?>">
+
+                <?php foreach ( get_option( 'gutenberg_blocks', array() ) as $block ) : ?>
+                    <div class="gutenberg_blocks_collection__item <?php echo $block['active'] ? 'active' : ''; ?> " data-id="<?php echo esc_html( $block['name'] ); ?>">
+                        <div class="gutenberg_blocks_collection__item__header">
+                            <h3 class="gutenberg_blocks_collection__item__title"><?php printf( esc_html__( '%s', 'gutenberg-blocks' ), $block['label'] ); ?></h3>
+                            <label class="gutenberg-blocks-switch-input">
+                                <input type="checkbox" name="block_status" <?php echo $block['active'] ? 'checked' : ''; ?>>
+                                <span class="gutenberg-blocks-switch-input-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+            <input type="hidden" name="gutenberg_blocks_nonce" value="<?php echo esc_html( wp_create_nonce( 'toggle_block_status' ) ); ?>">
+            <input type="hidden" name="gutenberg_blocks_ajax_url" value="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+        </div>
+
+    </div>
+
+<?php } ?>
+
 <?php
 wp_register_script('website-webkit-js', esc_url(MWW()->plugin_url()) . '/assets/js/website-webkit.js');
+wp_register_script('gutenberg-blocks-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/gutenberg-blocks-admin.js');
+wp_register_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/gutenberg-blocks-admin.css');
 wp_register_style('website-webkit-style', esc_url(MWW()->plugin_url()) . '/assets/css/style.css');
 wp_register_script('select2-js', esc_url(MWW()->plugin_url()) . '/assets/js/select2.full.min.js');
 wp_register_style('select2-style', esc_url(MWW()->plugin_url()) . '/assets/css/select2.min.css');
@@ -80,6 +134,8 @@ wp_localize_script('jquery', 'mww_website_ids_global_object', array('ajax_url' =
 
 wp_enqueue_script('website-webkit-js');
 wp_enqueue_script('select2-js');
+wp_enqueue_script('gutenberg-blocks-js');
 wp_enqueue_style('select2-style');
 wp_enqueue_style('website-webkit-style');
+wp_enqueue_style('gutenberg-blocks-style');
 

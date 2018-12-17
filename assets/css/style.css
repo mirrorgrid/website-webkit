@@ -10,7 +10,7 @@
 
 .mww_dashboard_row{
     display: grid;
-    grid-template-columns: 0px 299px 0px 0px;
+    grid-template-columns: 0px 300px 300px 0px;
     grid-gap: 25px;
     padding: 0px;
 }
@@ -45,3 +45,63 @@
 }
 
 
+
+
+.add-popup > svg{
+    margin-top:3px;
+}
+
+
+.popover__title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    text-decoration: none;
+    color: rgb(228, 68, 68);
+    text-align: center;
+    padding: 15px 0;
+}
+
+.popover__wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    left: -150px;
+    transform: translate(0,10px);
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(95% - 10px);
+    top: -10px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #FFFFFF transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0,-20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+    margin-top: 30px;
+
+}
+.popover__message {
+    text-align: center;
+}
+
+.popover__content > .wrap > button{
+    border-radius: 25px;
+}
