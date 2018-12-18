@@ -4,7 +4,7 @@
  */
 
 body {
-    background: white;
+    /*background: white;*/
     overflow: scroll;
 }
 
@@ -78,8 +78,8 @@ input:checked+.gutenberg-blocks-switch-input-slider {
 }
 
 #gutenberg_blocks_main-menu__header {
-    padding: 0;
-    background: #fff;
+    padding: 10px;
+    /*background: #fff;*/
     margin-bottom: 40px;
     box-shadow: 0px 2px 8px #e8e8e8;
 }
@@ -117,7 +117,6 @@ input:checked+.gutenberg-blocks-switch-input-slider {
     border: 1px solid lightgrey;
     padding: 15px;
     margin: 15px 0;
-    height: 80px;
     max-width: 50%;
     margin: 10px;
     transition: all 0.5s ease-in-out;

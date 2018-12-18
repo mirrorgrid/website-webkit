@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function gutenberg_blocks_cgb_block_assets() {
 	// Styles.
+
 	wp_enqueue_style(
 		'gutenberg_blocks-cgb-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.

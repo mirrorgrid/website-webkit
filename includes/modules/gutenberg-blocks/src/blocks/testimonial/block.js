@@ -51,7 +51,7 @@ registerBlockType('gutenberg-blocks/testimonial-block', {
     keywords: [
         __('testimonial'),
         __('quotes'),
-        __('Ultimate Blocks'),
+        __('Gutenberg Blocks'),
     ],
     attributes: {
         gutenberg_blocks_testimonial_text: {

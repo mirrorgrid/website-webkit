@@ -10,17 +10,21 @@ class MWW_Webkit_Ids
 
     }
 
+
     function mww_init_hook()
     {
         add_action('enable_post_types',array($this,'mww_add_post_type_enabled'));
-        //add_action('website_webkit_script_register',array($this, 'website_webkit_script_register'));
+        add_action('admin_enqueue_scripts',array($this, 'webkit_ids_script_enqueue'));
     }
-    function website_webkit_script_register(){
+    function webkit_ids_script_enqueue(){
+        wp_enqueue_style('website-webkit-style', esc_url(MWW()->plugin_url()) . '/assets/css/style.css');
+        wp_enqueue_script('website-webkit-js', esc_url(MWW()->plugin_url()) . '/assets/js/website-webkit.js');
 
     }
 
     function mww_add_post_type_enabled()
     {
+
         if (isset($_POST) && isset($_POST['webkit_ids_nonce']) && isset($_POST['mww_all_types_list'])){
             if (wp_verify_nonce($_POST['webkit_ids_nonce'],'webkit-ids-nonce')) {
                 $allTypes = $_POST['mww_all_types_list'];

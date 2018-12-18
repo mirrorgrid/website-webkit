@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 (function ($) {
     'use strict';
 
@@ -84,11 +83,12 @@
         }
 
         $(document).on('change', 'input[name="block_status"]', function () {
+            debugger;
 
             toggleBlockStatus(
                 $(this),
                 $(this).prop('checked'),
-                $(this).closest('.gutenberg_blocks_collection__item').data('id')
+                $(this).closest('tr').find('.block_name').data('id'),
             )
 
         });

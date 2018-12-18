@@ -9,11 +9,7 @@ class MWW_Gutenberg_Blocks
         $this->activate_gutenberg_block();
         $this->mww_init_hook();
         $this->includes();
-    }
 
-    function includes()
-    {
-        require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
     }
 
     function mww_init_hook()
@@ -24,7 +20,31 @@ class MWW_Gutenberg_Blocks
         add_action( 'wp_ajax_toggle_block_status', array($this, 'toggle_block_status'));
         // Insert blocks setting.
         add_action( 'admin_head', array($this, 'insert_blocks_settings'));
+
+        add_action( 'wp_enqueue_scripts', array($this, 'enqueue_plugin_scripts'));
+        add_action( 'admin_enqueue_scripts', array($this, 'enqueue_plugin_scripts'));
+
     }
+
+
+    public function enqueue_plugin_scripts()
+    {
+        wp_enqueue_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/gutenberg-blocks-admin.css',false);
+        wp_enqueue_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/slick.min.css',false);
+        wp_enqueue_script('gutenberg-blocks-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/gutenberg-blocks-admin.js', array('jquery'));
+        wp_enqueue_script('slick-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/slick.min.js', array('jquery'));
+        wp_enqueue_script('testimonial-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/testimonial.js', array('jquery'));
+
+    }
+
+
+
+
+    function includes()
+    {
+        require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
+    }
+
 
     function activate_gutenberg_block()
     {

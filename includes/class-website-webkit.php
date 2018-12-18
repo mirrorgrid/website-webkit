@@ -1,48 +1,19 @@
 <?php
-/**
- * Website Webkit setup
- *
- * @package Website Webkit
- * @since   1.0.0
- */
+
 
 defined('ABSPATH') || exit;
 
 
-/**
- * Main Website Webkit Class.
- *
- * @class Website Webkit
- */
 final class Website_Webkit
 {
 
-    /**
-     * Website Webkit version.
-     *
-     * @var string
-     */
     public $version = '1.0.0';
 
-    /**
-     * The single instance of the class.
-     *
-     * @var Website Webkit
-     * @since 1.0.0
-     */
+
     protected static $_instance = null;
 
 
-    /**
-     * Main Website Webkit Instance.
-     *
-     * Ensures only one instance of Website Webkit is loaded or can be loaded.
-     *
-     * @since 1.0.0
-     * @static
-     * @see WC()
-     * @return Website Webkit - Main instance.
-     */
+
     public static function instance()
     {
         if (is_null(self::$_instance)) {
@@ -51,43 +22,24 @@ final class Website_Webkit
         return self::$_instance;
     }
 
-    /**
-     * Cloning is forbidden.
-     *
-     * @since 1.0.0
-     */
+
     public function __clone()
     {
         wc_doing_it_wrong(__FUNCTION__, __('Cloning is forbidden.', 'website-webkit'), '1.0.0');
     }
 
-    /**
-     * Unserializing instances of this class is forbidden.
-     *
-     * @since 1.0.0
-     */
+
     public function __wakeup()
     {
         wc_doing_it_wrong(__FUNCTION__, __('Unserializing instances of this class is forbidden.', 'website-webkit'), '1.0.0');
     }
 
-    /**
-     * Auto-load in-accessible properties on demand.
-     *
-     * @param mixed $key Key name.
-     * @return mixed
-     */
 
-
-    /**
-     * Website Webkit Constructor.
-     */
     public function __construct()
     {
         $this->define_constants();
         $this->includes();
         $this->init_hooks();
-        $this->script_register();
     }
 
     /**
@@ -98,11 +50,13 @@ final class Website_Webkit
     private function init_hooks()
     {
         add_action('init', array($this, 'include_modules'));
+        add_action('admin_enqueue_scripts',array($this, 'script_register'));
 
     }
 
     function include_modules()
     {
+
         do_action('mww-modules-includes');
         do_action('mww_module_config_hook');
     }
@@ -186,38 +140,7 @@ final class Website_Webkit
          */
         include_once MWW_ABSPATH . 'notification/notification.php';
 
-        /**
-         * Interfaces.
-         */
-        //include_once MWW_ABSPATH . 'includes/';
-
-        /**
-         * Abstract classes.
-         */
-        //include_once MWW_ABSPATH . 'includes/';
-
-
-        /**
-         * Core classes.
-         */
-        //include_once MWW_ABSPATH . 'includes/';
-
-
-        /**
-         * Data stores - used to store and retrieve CRUD object data from the database.
-         */
-        //include_once MWW_ABSPATH . 'includes/';
-
-
-        /**
-         * REST API.
-         */
-        //include_once MWW_ABSPATH . 'includes/';
-
-        /**
-         * Libraries
-         */
-        //include_once MWW_ABSPATH . 'includes/';
+        include_once MWW_ABSPATH . 'includes/functions.php';
 
         if ($this->is_request('admin')) {
             include_once MWW_ABSPATH . 'includes/admin/class-mww-admin.php';
@@ -251,8 +174,12 @@ final class Website_Webkit
      */
     public function script_register()
     {
+        wp_enqueue_style('website-webkit-style', esc_url(MWW()->plugin_url()) . '/assets/css/style.css');
+        wp_enqueue_script('website-webkit-js', esc_url(MWW()->plugin_url()) . '/assets/js/website-webkit.js');
+        wp_enqueue_script('select2-js', esc_url(MWW()->plugin_url()) . '/assets/js/select2.full.min.js');
+        wp_enqueue_style('select2-style', esc_url(MWW()->plugin_url()) . '/assets/css/select2.min.css');
+        wp_localize_script('jquery', 'mww_website_ids_global_object', array('ajax_url' => admin_url('admin-ajax.php')));
 
-       // do_action('website_webkit_script_register');
     }
 
 

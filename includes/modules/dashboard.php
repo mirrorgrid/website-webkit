@@ -26,12 +26,3 @@
 </div>
 
 <?php
-wp_register_script('website-webkit-js',esc_url(MWW()->plugin_url()) . '/assets/js/website-webkit.js');
-wp_register_style('website-webkit-style',esc_url(MWW()->plugin_url()) . '/assets/css/style.css');
-wp_register_script('select2-js',esc_url(MWW()->plugin_url()) . '/assets/js/select2.full.min.js');
-wp_register_style('select2-style',esc_url(MWW()->plugin_url()) . '/assets/css/select2.min.css');
-wp_localize_script('jquery', 'mww_website_ids_global_object', array('ajax_url' => admin_url('admin-ajax.php')));
-
-
-wp_enqueue_script('website-webkit-js');
-wp_enqueue_style('website-webkit-style');
