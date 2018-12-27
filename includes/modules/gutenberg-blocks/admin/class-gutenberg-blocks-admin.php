@@ -13,10 +13,9 @@ class Gutenberg_Blocks_Admin {
 		$block_name = sanitize_text_field( $_POST['block_name'] );
 
 		$enable = sanitize_text_field( $_POST['enable'] );
-
 		if ( ! $this->block_exists( $block_name ) ) {
 			wp_send_json_error( array(
-				'error_message' => 'Unknown block name',
+				'error_message' => 'Unknown Error',
 			));
 		}
 
@@ -29,7 +28,7 @@ class Gutenberg_Blocks_Admin {
 			}
 			update_option( 'gutenberg_blocks', $saved_blocks );
 		} else {
-			update_option( 'gutenberg_blocks', $this->blocks() );
+			update_option( 'gutenberg_blocks', MWW_Gutenberg_Blocks::blocks() );
 		}
 
 		wp_send_json_success( get_option( 'gutenberg_blocks', false ) );
@@ -65,7 +64,7 @@ class Gutenberg_Blocks_Admin {
 	}
 
 	protected function block_exists( $name ) {
-		$blocks = $this->blocks();
+		$blocks = MWW_Gutenberg_Blocks::blocks();
 
 		$unknown_block = true;
 		foreach ( $blocks as $key => $block ) {
@@ -90,3 +89,4 @@ class Gutenberg_Blocks_Admin {
 
 
 }
+

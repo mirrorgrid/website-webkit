@@ -4,22 +4,21 @@
  * CSS for Backend only.
  */
 
-.wp-block-ub-testimonial-block {
+.wp-block-gutenberg-blocks-testimonial-block {
 	margin: 0 auto;
 	max-width: 740px;
 }
 
-.ub_testimonial {
-	display: grid;
-	grid-template-columns: fit-content(20%) auto;
+.gutenberg-blocks-testimonial {
+	display: flex;
 }
 
-.ub_testimonial_content {
+.gutenberg-blocks-testimonial_content {
 	padding: 5px 17px !important;
 	margin-top: 15px;
 }
 
-.ub_testimonial_img {
+.gutenberg-blocks-testimonial_img {
 	padding: 0px 10px !important;
 	img {
 		margin: 0 auto;
@@ -29,7 +28,7 @@
 	}
 }
 
-.ub_testimonial_upload_button {
+.gutenberg-blocks-testimonial_upload_button {
 	margin: 24px 0px 0px 0px;
 	p {
 		font-size: 12px;

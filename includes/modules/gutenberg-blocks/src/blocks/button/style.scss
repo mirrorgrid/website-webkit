@@ -1,0 +1,58 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-gutenberg-blocks-button-block {
+    margin: 30px auto;
+    max-width: 100%;
+}
+
+.gutenberg-blocks-button-container {
+    display: flex;
+}
+
+.gutenberg-blocks-button-block-btn {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    text-align: center;
+}
+
+.align-button-center {
+    justify-content: center;
+}
+
+.align-button-left {
+    justify-content: flex-start;
+}
+
+.align-button-right {
+    justify-content: flex-end;
+}
+
+.gutenberg-blocks-button-small {
+    width: 180px;
+    padding: 10px;
+    font-size: 13px !important;
+}
+
+.gutenberg-blocks-button-medium {
+    width: 275px;
+    padding: 15px;
+    font-size: 17px !important;
+}
+
+.gutenberg-blocks-button-large {
+    width: 417px;
+    padding: 20px;
+    font-size: 22px !important;
+}
+
+.gutenberg-blocks-button-larger {
+    width: 512px;
+    padding: 20px;
+    font-size: 25px !important;
+}

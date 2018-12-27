@@ -4,7 +4,7 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.ub-hide {
+.gutenberg-blocks-hide {
   display: none !important; }
 
 /**
@@ -12,29 +12,65 @@
  *
  * CSS for Backend only.
  */
-.wp-block-ub-testimonial-block {
+.wp-block-gutenberg-blocks-testimonial-block {
   margin: 0 auto;
   max-width: 740px; }
 
-.ub_testimonial {
-  display: grid;
-  grid-template-columns: fit-content(20%) auto; }
+.gutenberg-blocks-testimonial {
+  display: -ms-flexbox;
+  display: flex; }
 
-.ub_testimonial_content {
+.gutenberg-blocks-testimonial_content {
   padding: 5px 17px !important;
   margin-top: 15px; }
 
-.ub_testimonial_img {
+.gutenberg-blocks-testimonial_img {
   padding: 0px 10px !important; }
-  .ub_testimonial_img img {
+  .gutenberg-blocks-testimonial_img img {
     margin: 0 auto;
     padding: 0;
     margin-top: 10px;
     border-radius: 50%; }
 
-.ub_testimonial_upload_button {
+.gutenberg-blocks-testimonial_upload_button {
   margin: 24px 0px 0px 0px; }
-  .ub_testimonial_upload_button p {
+  .gutenberg-blocks-testimonial_upload_button p {
     font-size: 12px;
     text-align: justify;
     margin: 5px 0 0 3px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.gutenberg-blocks-hide {
+  display: none !important; }
+
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-gutenberg-blocks-button-block {
+  margin: 0 auto;
+  max-width: 100%; }
+
+.gutenberg_blocks_button_url_input {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-top: 5px; }
+
+.gutenberg_blocks_button_input_box {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.flex-container {
+  display: -ms-flexbox;
+  display: flex; }

@@ -32,7 +32,6 @@ class MWW_Gutenberg_Blocks
         wp_enqueue_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/gutenberg-blocks-admin.css',false);
         wp_enqueue_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/slick.min.css',false);
         wp_enqueue_script('gutenberg-blocks-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/gutenberg-blocks-admin.js', array('jquery'));
-        wp_enqueue_script('slick-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/slick.min.js', array('jquery'));
         wp_enqueue_script('testimonial-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/testimonial.js', array('jquery'));
 
     }
@@ -70,6 +69,21 @@ class MWW_Gutenberg_Blocks
                 'label'  => 'Testimonial',
                 'name'   => 'gutenberg-blocks/testimonial-block',
                 'active' => true,
+            ),
+            array(
+                'label'  => 'Buttons',
+                'name'   => 'gutenberg-blocks/button-block',
+                'active' => true,
+            ),
+            array(
+                'label'  => 'Progress Bar',
+                'name'   => 'gutenberg-blocks/progress-bar',
+                'active' => true,
+            ),
+            array(
+                'label'  => 'Star Rating',
+                'name'   => 'gutenberg-blocks/star-rating',
+                'active' => true,
             )
         ];
     }
@@ -83,7 +97,7 @@ class MWW_Gutenberg_Blocks
 
         if ($registered_blocks) {
             foreach ( $blocks as $block ) {
-                if ( ! $this->is_block_registered( $block['name'], $registered_blocks ) ) {
+                if ( ! $this->is_block_registered( $block['name'], $registered_blocks) ) {
                     $new_blocks[] = $block;
                 }
             }
@@ -107,10 +121,9 @@ class MWW_Gutenberg_Blocks
     }
     protected function is_block_registered( $name, $registered_blocks ) {
         $blocks = $registered_blocks;
-
         $unknown_block = true;
         foreach ( $blocks as $key => $block ) {
-            if ( $block['name'] === $name ) {
+            if ( $block['name'] === $name) {
                 return true;
             }
         }
@@ -133,6 +146,7 @@ class MWW_Gutenberg_Blocks
 
         $saved_blocks = get_option( 'gutenberg_blocks', false );
         if ( $saved_blocks ) {
+            print_r($saved_blocks);
             foreach ( $saved_blocks as $key => $block ) {
                 if ( $block['name'] === $block_name ) {
                     $saved_blocks[ $key ]['active'] = ( $enable === 'true' );
@@ -148,10 +162,7 @@ class MWW_Gutenberg_Blocks
 
     public function insert_blocks_settings() {
         $gutenberg_blocks_settings = wp_json_encode( get_option( 'gutenberg_blocks', array() ) );
-        ?>
-
-        <script> window.gutenberg_blocks=<?php echo $gutenberg_blocks_settings; ?> </script>
-
+        ?><script> window.gutenberg_blocks=<?php echo $gutenberg_blocks_settings; ?> </script>
         <?php
     }
 
