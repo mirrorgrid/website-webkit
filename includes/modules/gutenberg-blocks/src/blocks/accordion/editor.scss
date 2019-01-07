@@ -1,29 +1,30 @@
 /**
- * #.# Styles
+ * #.# Editor Styles
  *
- * CSS for both Frontend+Backend.
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
  */
 
-.wp-block-ub-content-toggle {
+.wp-block-gutenberg-blocks-content-toggle {
     margin: 20px 0 20px 0;
     max-width: 740px;
 }
 
-.wp-block-ub-content-toggle-accordion {
+.wp-block-gutenberg-blocks-content-toggle-accordion {
     position: relative;
     border: 1px solid lightsalmon;
     margin-bottom: 10px;
-    .wp-block-ub-content-toggle-accordion-title {
+    .wp-block-gutenberg-blocks-content-toggle-accordion-title {
         padding: 10px 10px 10px 25px;
         color: white;
         margin: 0;
         font-size: 18px;
         display: block;
     }
-    .wp-block-ub-content-toggle-accordion-content {
+    .wp-block-gutenberg-blocks-content-toggle-accordion-content {
         padding: 25px;
     }
-    .wp-block-ub-content-toggle-accordion-controls-top {
+    .wp-block-gutenberg-blocks-content-toggle-accordion-controls-top {
         position: absolute;
         top: -10px;
         left: 0;
@@ -35,9 +36,14 @@
         >span {
             display: inline-block;
             margin: 0 3px;
+            cursor: pointer;
+        }
+        >span:nth-of-type(2) {
+            position: absolute;
+            right: -15px;
         }
     }
-    .wp-block-ub-content-toggle-accordion-controls-bottom {
+    .wp-block-gutenberg-blocks-content-toggle-accordion-controls-bottom {
         position: absolute;
         bottom: -10px;
         left: 0;
@@ -49,19 +55,19 @@
         >span {
             display: inline-block;
             margin: 0 3px;
+            cursor: pointer;
         }
     }
-    .wp-block-ub-content-toggle-accordion-title-wrap {
+    .wp-block-gutenberg-blocks-content-toggle-accordion-title-wrap {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         background: lightsalmon;
-        cursor: pointer;
         >*:first-child {
             flex-grow: 1;
         }
-        .wp-block-ub-content-toggle-accordion-state-indicator {
+        .wp-block-gutenberg-blocks-content-toggle-accordion-state-indicator {
             display: block;
-            margin: 0 10px;
+            margin: 10px;
             transition: 0.5s all;
             transform: rotate(0deg);
             color: white;
@@ -71,8 +77,8 @@
         }
     }
     &:hover {
-        .wp-block-ub-content-toggle-accordion-controls-top,
-        .wp-block-ub-content-toggle-accordion-controls-bottom {
+        .wp-block-gutenberg-blocks-content-toggle-accordion-controls-top,
+        .wp-block-gutenberg-blocks-content-toggle-accordion-controls-bottom {
             opacity: 1;
         }
     }

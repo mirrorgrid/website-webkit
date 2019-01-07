@@ -5,7 +5,7 @@
         var isBlocksListEmpty = $('.gutenberg_blocks_collection__item').length === 0
 
         if (isBlocksListEmpty) {
-            insertBlocks();
+           /* insertBlocks();*/
         }
 
         $(document).on('change', 'input[name="block_status"]', function () {
@@ -41,10 +41,10 @@
             var data = {
                 enable: enable,
                 block_name: id,
-                action: 'toggle_block_status',
+                action: 'mww_toggle_block_status',
                 _ajax_nonce: $('input[name="gutenberg_blocks_nonce"]').val()
             };
-
+            debugger;
             $.ajax({
                 url: ajaxurl,
                 type: 'POST',
@@ -60,9 +60,9 @@
         }
 
 
-         function insertBlocks() {
+ /*        function insertBlocks() {
          var blocksHtml = '';
-
+             var blocks =[];
          $.each(blocks, function (index, block) {
          //item start
          blocksHtml += '<div class="gutenberg_blocks_collection__item" data-id="' + block.name + '">';
@@ -86,7 +86,7 @@
          });
 
          $('.gutenberg_blocks_collection').html(blocksHtml);
-         }
+         }*/
 
 
     });

@@ -39,7 +39,7 @@ registerBlockType('gutenberg-blocks/progress-bar', {
 		},
 		barColor: {
 			type: 'string',
-			default: '#2DB7F5'
+			default: '#005075'
 		},
 		barThickness: {
 			type: 'number',

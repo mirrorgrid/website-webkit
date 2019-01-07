@@ -126,7 +126,7 @@ registerBlockType('gutenberg-blocks/star-rating', {
 				<div key={'editable'} className="gutenberg-blocks-review-text">
 					<RichText
 						tagName="div"
-						placeholder={__('The text of the review goes here')}
+						placeholder={__('Review Text')}
 						value={reviewText}
 						onChange={text => setAttributes({ reviewText: text })}
 						keepPlaceholderOnFocus={true}

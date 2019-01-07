@@ -30,16 +30,16 @@ const { RichText } = wp.editor;
  * editor interface where blocks are implemented.
  *
  * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     ub/tabbed-content.
+ * @param  {string}   name     gutenberg-blocks/tabbed-content.
  * @param  {Object}   settings Block settings.
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('ub/tabbed-content', {
-	title: __('Tabbed Content'),
+registerBlockType('gutenberg-blocks/tabbed-content', {
+	title: __('Tabs'),
 	icon: icon,
-	category: 'ultimateblocks',
-	keywords: [__('Tabbed Content'), __('Tabs'), __('Ultimate Blocks')],
+	category: 'gutenberg-blocks',
+	keywords: [__('Tabbed Content'), __('Tabs'), __('Gutenberg Blocks')],
 	attributes: {
 		id: {
 			type: 'number',
@@ -66,34 +66,34 @@ registerBlockType('ub/tabbed-content', {
 		},
 		tabsContent: {
 			source: 'query',
-			selector: '.wp-block-ub-tabbed-content-tab-content-wrap',
+			selector: '.wp-block-gutenberg-blocks-tabbed-content-tab-content-wrap',
 			query: {
 				content: {
 					type: 'array',
 					source: 'children',
-					selector: '.wp-block-ub-tabbed-content-tab-content'
+					selector: '.wp-block-gutenberg-blocks-tabbed-content-tab-content'
 				}
 			}
 		},
 		tabsTitle: {
 			source: 'query',
-			selector: '.wp-block-ub-tabbed-content-tab-title-wrap',
+			selector: '.wp-block-gutenberg-blocks-tabbed-content-tab-title-wrap',
 			query: {
 				content: {
 					type: 'array',
 					source: 'children',
-					selector: '.wp-block-ub-tabbed-content-tab-title'
+					selector: '.wp-block-gutenberg-blocks-tabbed-content-tab-title'
 				}
 			}
 		}
 	},
 
 	edit: function(props) {
-		window.ubTabbedContentBlocks = window.ubTabbedContentBlocks || [];
+		window.gutenbergblocksTabbedContentBlocks = window.gutenbergblocksTabbedContentBlocks || [];
 
 		let block = null;
 
-		for (const bl of window.ubTabbedContentBlocks) {
+		for (const bl of window.gutenbergblocksTabbedContentBlocks) {
 			if (bl.id === props.attributes.id) {
 				block = bl;
 				break;
@@ -102,11 +102,11 @@ registerBlockType('ub/tabbed-content', {
 
 		if (!block) {
 			block = {
-				id: window.ubTabbedContentBlocks.length,
+				id: window.gutenbergblocksTabbedContentBlocks.length,
 				SortableItem: null,
 				SortableList: null
 			};
-			window.ubTabbedContentBlocks.push(block);
+			window.gutenbergblocksTabbedContentBlocks.push(block);
 			props.setAttributes({ id: block.id });
 		}
 
@@ -249,7 +249,7 @@ registerBlockType('ub/tabbed-content', {
 									className={
 										'dashicons dashicons-minus remove-tab-icon' +
 										(propz.attributes.tabsTitle.length === 1
-											? ' ub-hide'
+											? ' gutenberg-blocks-hide'
 											: '')
 									}
 									onClick={() => onRemoveTitle(i)}
@@ -333,7 +333,7 @@ registerBlockType('ub/tabbed-content', {
 										'-tab-content-wrap' +
 										(attributes.activeTab === i
 											? ' active'
-											: ' ub-hide')
+											: ' gutenberg-blocks-hide')
 									}
 									onClick={() =>
 										showControls('tab-content', i)
@@ -369,7 +369,7 @@ registerBlockType('ub/tabbed-content', {
 	},
 
 	save: function(props) {
-		const className = 'wp-block-ub-tabbed-content';
+		const className = 'wp-block-gutenberg-blocks-tabbed-content';
 
 		const { activeTab, theme, titleColor } = props.attributes;
 
@@ -417,7 +417,7 @@ registerBlockType('ub/tabbed-content', {
 										'-tab-content-wrap' +
 										(activeTab === i
 											? ' active'
-											: ' ub-hide')
+											: ' gutenberg-blocks-hide')
 									}
 									key={i}
 								>

@@ -1,5 +1,5 @@
 /**
- * BLOCK: feature-box
+ * BLOCK: testimonial
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -54,62 +54,62 @@ const {
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('ub/feature-box', {
+registerBlockType('gutenberg-blocks/testimonial', {
 
-    title: __('Feature Box'),
+    title: __('Testimonials'),
     icon: icon,
-    category: 'ultimateblocks',
+    category: 'gutenberg-blocks',
     keywords: [
         __('Feature Box'),
         __('Column'),
-        __('Ultimate Blocks'),
+        __('Gutenberg Blocks'),
     ],
     attributes: {
         column: {
-            type: 'select',
+            type: 'number',
             default: '2'
         },
         columnOneTitle: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_one_title',
-            default: 'Title One'
+            selector: '.gutenberg_blocks_feature_one_title',
+            default: 'John Doe'
         },
         columnTwoTitle: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_two_title',
-            default: 'Title Two'
+            selector: '.gutenberg_blocks_feature_two_title',
+            default: 'John Doe'
         },
         columnThreeTitle: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_three_title',
-            default: 'Title Three'
+            selector: '.gutenberg_blocks_feature_three_title',
+            default: 'John Doe'
         },
         columnOneBody: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_one_body',
-            default: 'Gutenberg is really awesome! Ultimate Blocks makes it more awesome!'
+            selector: '.gutenberg_blocks_feature_one_body',
+            default: 'Add testimonial text here'
         },
         columnTwoBody: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_two_body',
-            default: 'Gutenberg is really awesome! Ultimate Blocks makes it more awesome!'
+            selector: '.gutenberg_blocks_feature_two_body',
+            default: 'Add testimonial text here'
         },
         columnThreeBody: {
             type: 'array',
             source: 'children',
-            selector: '.ub_feature_three_body',
-            default: 'Gutenberg is really awesome! Ultimate Blocks makes it more awesome!'
+            selector: '.gutenberg_blocks_feature_three_body',
+            default: 'Add testimonial text here'
         },
         imgOneURL: {
             type: 'string',
             source: 'attribute',
             attribute: 'src',
-            selector: '.ub_feature_one_img',
+            selector: '.gutenberg_blocks_feature_one_img',
         },
         imgOneID: {
             type: 'number',
@@ -118,13 +118,13 @@ registerBlockType('ub/feature-box', {
             type: 'string',
             source: 'attribute',
             attribute: 'alt',
-            selector: '.ub_feature_one_img',
+            selector: '.gutenberg_blocks_feature_one_img',
         },
         imgTwoURL: {
             type: 'string',
             source: 'attribute',
             attribute: 'src',
-            selector: '.ub_feature_two_img',
+            selector: '.gutenberg_blocks_feature_two_img',
         },
         imgTwoID: {
             type: 'number',
@@ -133,13 +133,13 @@ registerBlockType('ub/feature-box', {
             type: 'string',
             source: 'attribute',
             attribute: 'alt',
-            selector: '.ub_feature_two_img',
+            selector: '.gutenberg_blocks_feature_two_img',
         },
         imgThreeURL: {
             type: 'string',
             source: 'attribute',
             attribute: 'src',
-            selector: '.ub_feature_three_img',
+            selector: '.gutenberg_blocks_feature_three_img',
         },
         imgThreeID: {
             type: 'number',
@@ -148,7 +148,7 @@ registerBlockType('ub/feature-box', {
             type: 'string',
             source: 'attribute',
             attribute: 'alt',
-            selector: '.ub_feature_three_img',
+            selector: '.gutenberg_blocks_feature_three_img',
         },
     },
 
@@ -252,26 +252,26 @@ registerBlockType('ub/feature-box', {
 
             isSelected && (
                 <InspectorControls key={'inspector'}>
-                    <SelectControl
-                        label={__('Column Number')}
-                        value={column}
-                        options={columns.map(({ value, label }) => ({
-                            value: value,
-                            label: label,
-                        }))}
-                        onChange={(value) => {
-                            props.setAttributes({ column: value })
-                        }}
-                    />
+                    <PanelBody title={ __('General Settings') }>
+                        <RangeControl
+                            label={ __('Columns') }
+                            value={column}
+                            onChange={(value) => {
+                                props.setAttributes({ column: value })
+                            }}
+                            min={ 1 }
+                            max={ 3 }
+                        />
+                    </PanelBody>
                 </InspectorControls>
             ),
 
             <div key={'editable'} className={props.className}>
-                <div className={`ub_feature_box column_${column}`}>
-                    <div class="ub_feature_1">
+                <div className={`gutenberg_blocks_feature_box column_${column}`}>
+                    <div class="gutenberg_blocks_feature_1">
                         {!props.attributes.imgOneID ? (
 
-                            <div className="ub_feature_upload_button">
+                            <div className="gutenberg_blocks_feature_upload_button">
                                 <MediaUpload
                                     onSelect={onSelectImageOne}
                                     type="image"
@@ -296,7 +296,7 @@ registerBlockType('ub/feature-box', {
                                         </Button>
                                     ) : null}
                                     <img
-                                        className="ub_feature_one_img"
+                                        className="gutenberg_blocks_feature_one_img"
                                         src={imgOneURL}
                                         alt={imgOneAlt}
                                     />
@@ -304,7 +304,7 @@ registerBlockType('ub/feature-box', {
                             )}
                         <RichText
                             tagName="p"
-                            className="ub_feature_one_title"
+                            className="gutenberg_blocks_feature_one_title"
                             value={columnOneTitle}
                             onChange={(value) => props.setAttributes({ columnOneTitle: value })}
                             isSelected={isSelected && editable === 'title_one'}
@@ -313,7 +313,7 @@ registerBlockType('ub/feature-box', {
                         />
                         <RichText
                             tagName="p"
-                            className="ub_feature_one_body"
+                            className="gutenberg_blocks_feature_one_body"
                             value={columnOneBody}
                             onChange={(value) => props.setAttributes({ columnOneBody: value })}
                             isSelected={isSelected && editable === 'body_one'}
@@ -321,9 +321,9 @@ registerBlockType('ub/feature-box', {
                             keepPlaceholderOnFocus={true}
                         />
                     </div>
-                    <div class="ub_feature_2">
+                    <div class="gutenberg_blocks_feature_2">
                         {!props.attributes.imgTwoID ? (
-                            <div className="ub_feature_upload_button">
+                            <div className="gutenberg_blocks_feature_upload_button">
                                 <MediaUpload
                                     onSelect={onSelectImageTwo}
                                     type="image"
@@ -348,7 +348,7 @@ registerBlockType('ub/feature-box', {
                                         </Button>
                                     ) : null}
                                     <img
-                                        className="ub_feature_two_img"
+                                        className="gutenberg_blocks_feature_two_img"
                                         src={imgTwoURL}
                                         alt={imgTwoAlt}
                                     />
@@ -356,7 +356,7 @@ registerBlockType('ub/feature-box', {
                             )}
                         <RichText
                             tagName="p"
-                            className="ub_feature_two_title"
+                            className="gutenberg_blocks_feature_two_title"
                             value={columnTwoTitle}
                             onChange={(value) => props.setAttributes({ columnTwoTitle: value })}
                             isSelected={isSelected && editable === 'title_two'}
@@ -365,7 +365,7 @@ registerBlockType('ub/feature-box', {
                         />
                         <RichText
                             tagName="p"
-                            className="ub_feature_two_body"
+                            className="gutenberg_blocks_feature_two_body"
                             value={columnTwoBody}
                             onChange={(value) => props.setAttributes({ columnTwoBody: value })}
                             isSelected={isSelected && editable === 'body_two'}
@@ -373,9 +373,9 @@ registerBlockType('ub/feature-box', {
                             keepPlaceholderOnFocus={true}
                         />
                     </div>
-                    <div class="ub_feature_3">
+                    <div class="gutenberg_blocks_feature_3">
                         {!props.attributes.imgThreeID ? (
-                            <div className="ub_feature_upload_button">
+                            <div className="gutenberg_blocks_feature_upload_button">
                                 <MediaUpload
                                     onSelect={onSelectImageThree}
                                     type="image"
@@ -400,7 +400,7 @@ registerBlockType('ub/feature-box', {
                                         </Button>
                                     ) : null}
                                     <img
-                                        className="ub_feature_three_img"
+                                        className="gutenberg_blocks_feature_three_img"
                                         src={imgThreeURL}
                                         alt={imgThreeAlt}
                                     />
@@ -408,7 +408,7 @@ registerBlockType('ub/feature-box', {
                             )}
                         <RichText
                             tagName="p"
-                            className="ub_feature_three_title"
+                            className="gutenberg_blocks_feature_three_title"
                             value={columnThreeTitle}
                             onChange={(value) => props.setAttributes({ columnThreeTitle: value })}
                             isSelected={isSelected && editable === 'title_three'}
@@ -417,7 +417,7 @@ registerBlockType('ub/feature-box', {
                         />
                         <RichText
                             tagName="p"
-                            className="ub_feature_three_body"
+                            className="gutenberg_blocks_feature_three_body"
                             value={columnThreeBody}
                             onChange={(value) => props.setAttributes({ columnThreeBody: value })}
                             isSelected={isSelected && editable === 'body_three'}
@@ -461,33 +461,33 @@ registerBlockType('ub/feature-box', {
 
         return (
             <div className={props.className}>
-                <div className={`ub_feature_box column_${column}`}>
-                    <div class="ub_feature_1">
+                <div className={`gutenberg_blocks_feature_box column_${column}`}>
+                    <div class="gutenberg_blocks_feature_1">
                         <img
-                            className="ub_feature_one_img"
+                            className="gutenberg_blocks_feature_one_img"
                             src={imgOneURL}
                             alt={imgOneAlt}
                         />
-                        <p className="ub_feature_one_title">{columnOneTitle}</p>
-                        <p className="ub_feature_one_body">{columnOneBody}</p>
+                        <p className="gutenberg_blocks_feature_one_title">{columnOneTitle}</p>
+                        <p className="gutenberg_blocks_feature_one_body">{columnOneBody}</p>
                     </div>
-                    <div class="ub_feature_2">
+                    <div class="gutenberg_blocks_feature_2">
                         <img
-                            className="ub_feature_two_img"
+                            className="gutenberg_blocks_feature_two_img"
                             src={imgTwoURL}
                             alt={imgTwoAlt}
                         />
-                        <p className="ub_feature_two_title">{columnTwoTitle}</p>
-                        <p className="ub_feature_two_body">{columnTwoBody}</p>
+                        <p className="gutenberg_blocks_feature_two_title">{columnTwoTitle}</p>
+                        <p className="gutenberg_blocks_feature_two_body">{columnTwoBody}</p>
                     </div>
-                    <div class="ub_feature_3">
+                    <div class="gutenberg_blocks_feature_3">
                         <img
-                            className="ub_feature_three_img"
+                            className="gutenberg_blocks_feature_three_img"
                             src={imgThreeURL}
                             alt={imgThreeAlt}
                         />
-                        <p className="ub_feature_three_title">{columnThreeTitle}</p>
-                        <p className="ub_feature_three_body">{columnThreeBody}</p>
+                        <p className="gutenberg_blocks_feature_three_title">{columnThreeTitle}</p>
+                        <p className="gutenberg_blocks_feature_three_body">{columnThreeBody}</p>
                     </div>
                 </div>
             </div>

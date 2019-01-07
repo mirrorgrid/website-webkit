@@ -4,35 +4,14 @@ class Gutenberg_Blocks_Admin {
 
 	public function __construct() {
 
+        add_action( 'admin_init', array($this, 'register_new_blocks'));
+        // Ajax hooks.
 
-	}
-	public function toggle_block_status() {
+        // Insert blocks setting.
+        add_action( 'admin_head', array($this, 'insert_blocks_settings'));
+    }
 
-		check_ajax_referer( 'toggle_block_status' );
 
-		$block_name = sanitize_text_field( $_POST['block_name'] );
-
-		$enable = sanitize_text_field( $_POST['enable'] );
-		if ( ! $this->block_exists( $block_name ) ) {
-			wp_send_json_error( array(
-				'error_message' => 'Unknown Error',
-			));
-		}
-
-		$saved_blocks = get_option( 'gutenberg_blocks', false );
-		if ( $saved_blocks ) {
-			foreach ( $saved_blocks as $key => $block ) {
-				if ( $block['name'] === $block_name ) {
-					$saved_blocks[ $key ]['active'] = ( $enable === 'true' );
-				}
-			}
-			update_option( 'gutenberg_blocks', $saved_blocks );
-		} else {
-			update_option( 'gutenberg_blocks', MWW_Gutenberg_Blocks::blocks() );
-		}
-
-		wp_send_json_success( get_option( 'gutenberg_blocks', false ) );
-	}
 
 	public function insert_blocks_settings() {
 		$gutenberg_blocks_settings = wp_json_encode( get_option( 'gutenberg_blocks', array() ) );
@@ -63,17 +42,6 @@ class Gutenberg_Blocks_Admin {
 		}
 	}
 
-	protected function block_exists( $name ) {
-		$blocks = MWW_Gutenberg_Blocks::blocks();
-
-		$unknown_block = true;
-		foreach ( $blocks as $key => $block ) {
-			if ( $block['name'] === $name ) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	protected function is_block_registered( $name, $registered_blocks ) {
 		$blocks = $registered_blocks;

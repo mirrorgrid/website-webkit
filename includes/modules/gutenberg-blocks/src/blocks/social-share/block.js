@@ -11,14 +11,14 @@ import './editor.scss';
 
 // Import Icons
 import {
-	FacebookIcon,
-	TwitterIcon,
-	LinkedInIcon,
-	PinterestIcon,
-	RedditIcon,
-	GooglePlusIcon,
-	TumblrIcon,
-	icon,
+    FacebookIcon,
+    TwitterIcon,
+    LinkedInIcon,
+    PinterestIcon,
+    RedditIcon,
+    GooglePlusIcon,
+    TumblrIcon,
+    icon,
 } from './icons/icons';
 
 // Import components
@@ -26,17 +26,17 @@ import Inspector from './inspector';
 
 // variables
 const iconSizes = {
-	normal: 20,
-	medium: 30,
-	large: 40,
+    normal: 20,
+    medium: 30,
+    large: 40,
 };
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks;
 
 const {
-	BlockControls,
-	AlignmentToolbar,
+    BlockControls,
+    AlignmentToolbar,
 } = wp.editor;
 
 /**
@@ -52,59 +52,59 @@ const {
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('ub/social-share', {
+registerBlockType('gutenberg-blocks/social-share', {
 
-	title: __('Social Share'),
-	icon: icon,
-	category: 'ultimateblocks',
-	keywords: [
-		__('social'),
-		__('share'),
-		__('Ultimate Blocks'),
-	],
+    title: __('Social Share'),
+    icon: icon,
+    category: 'gutenberg-blocks',
+    keywords: [
+        __('social'),
+        __('share'),
+        __('Gutenberg Blocks'),
+    ],
 
-	edit: function (props) {
-		const toggleFacebookIcon = () => {
-			props.setAttributes({ showFacebookIcon: !props.attributes.showFacebookIcon });
-		};
+    edit: function (props) {
+        const toggleFacebookIcon = () => {
+            props.setAttributes({ showFacebookIcon: !props.attributes.showFacebookIcon });
+        };
 
-		const toggleTwitterIcon = () => {
-			props.setAttributes({ showTwitterIcon: !props.attributes.showTwitterIcon });
-		};
+        const toggleTwitterIcon = () => {
+            props.setAttributes({ showTwitterIcon: !props.attributes.showTwitterIcon });
+        };
 
-		const toggleLinkedInIcon = () => {
-			props.setAttributes({ showLinkedInIcon: !props.attributes.showLinkedInIcon });
-		};
+        const toggleLinkedInIcon = () => {
+            props.setAttributes({ showLinkedInIcon: !props.attributes.showLinkedInIcon });
+        };
 
-		const togglePinterestIcon = () => {
-			props.setAttributes({ showPinterestIcon: !props.attributes.showPinterestIcon });
-		};
+        const togglePinterestIcon = () => {
+            props.setAttributes({ showPinterestIcon: !props.attributes.showPinterestIcon });
+        };
 
-		const toggleRedditIcon = () => {
-			props.setAttributes({ showRedditIcon: !props.attributes.showRedditIcon });
-		};
+        const toggleRedditIcon = () => {
+            props.setAttributes({ showRedditIcon: !props.attributes.showRedditIcon });
+        };
 
-		const toggleGooglePlusIcon = () => {
-			props.setAttributes({ showGooglePlusIcon: !props.attributes.showGooglePlusIcon });
-		};
+        const toggleGooglePlusIcon = () => {
+            props.setAttributes({ showGooglePlusIcon: !props.attributes.showGooglePlusIcon });
+        };
 
-		const toggleTumblrIcon = () => {
-			props.setAttributes({ showTumblrIcon: !props.attributes.showTumblrIcon });
-		};
+        const toggleTumblrIcon = () => {
+            props.setAttributes({ showTumblrIcon: !props.attributes.showTumblrIcon });
+        };
 
-		const onSizeChange = value => {
-			props.setAttributes({ iconSize: value });
-		};
+        const onSizeChange = value => {
+            props.setAttributes({ iconSize: value });
+        };
 
-		const onShapeChange = value => {
-			props.setAttributes({ iconShape: value });
-		};
+        const onShapeChange = value => {
+            props.setAttributes({ iconShape: value });
+        };
 
-		const iconSize = iconSizes[props.attributes.iconSize];
+        const iconSize = iconSizes[props.attributes.iconSize];
 
-		const align = props.attributes.align;
+        const align = props.attributes.align;
 
-		const controls = (
+        const controls = (
 			<BlockControls key="controls">
 				<AlignmentToolbar
 					value={align}
@@ -112,73 +112,73 @@ registerBlockType('ub/social-share', {
 					controls={['left', 'center', 'right']}
 				/>
 			</BlockControls>
-		);
+        );
 
-		return [
-			props.isSelected && controls,
-			props.isSelected && (
+        return [
+            props.isSelected && controls,
+            props.isSelected && (
 				<Inspector {...{
-					onSizeChange,
-					onShapeChange,
-					toggleFacebookIcon,
-					toggleTwitterIcon,
-					toggleLinkedInIcon,
-					togglePinterestIcon,
-					toggleRedditIcon,
-					toggleGooglePlusIcon,
-					toggleTumblrIcon,
-					...props
-				}} key="inspector-control" />),
-			<div id="ub-social-share-block-editor" className={props.className} key="block-editor">
+                    onSizeChange,
+                    onShapeChange,
+                    toggleFacebookIcon,
+                    toggleTwitterIcon,
+                    toggleLinkedInIcon,
+                    togglePinterestIcon,
+                    toggleRedditIcon,
+                    toggleGooglePlusIcon,
+                    toggleTumblrIcon,
+                    ...props
+                }} key="inspector-control" />),
+			<div id="gutenberg-blocks-social-share-block-editor" className={props.className} key="block-editor">
 				<div className={'social-share-icons ' + 'align-icons-' + props.attributes.align}>
-					{props.attributes.showFacebookIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showFacebookIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.facebookIconBgColor }}>
 						<FacebookIcon width={iconSize} height={iconSize} fillColor={props.attributes.facebookIconTextColor} />
 					</a>}
-					{props.attributes.showTwitterIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showTwitterIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.twitterIconBgColor }}>
 						<TwitterIcon width={iconSize} height={iconSize} fillColor={props.attributes.twitterIconTextColor} />
 					</a>}
-					{props.attributes.showLinkedInIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showLinkedInIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.linkedInIconBgColor }}>
 						<LinkedInIcon width={iconSize} height={iconSize} fillColor={props.attributes.linkedInIconTextColor} />
 					</a>}
-					{props.attributes.showPinterestIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showPinterestIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.pinterestIconBgColor }}>
 						<PinterestIcon width={iconSize} height={iconSize} fillColor={props.attributes.pinterestIconTextColor} />
 					</a>}
-					{props.attributes.showRedditIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showRedditIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.redditIconBgColor }}>
 						<RedditIcon width={iconSize} height={iconSize} fillColor={props.attributes.redditIconTextColor} />
 					</a>}
-					{props.attributes.showGooglePlusIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showGooglePlusIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.googlePlusIconBgColor }}>
 						<GooglePlusIcon width={iconSize} height={iconSize} fillColor={props.attributes.googlePlusIconTextColor} />
 					</a>}
-					{props.attributes.showTumblrIcon && <a
-						href="#ub-social-share-block-editor"
+                    {props.attributes.showTumblrIcon && <a
+						href="#gutenberg-blocks-social-share-block-editor"
 						className={'social-share-icon ' + props.attributes.iconShape}
 						style={{ width: (iconSize * 1.5), height: (iconSize * 1.5), backgroundColor: props.attributes.tumblrIconBgColor }}>
 						<TumblrIcon width={iconSize} height={iconSize} fillColor={props.attributes.tumblrIconTextColor} />
 					</a>}
 				</div>
 			</div>,
-		];
-	},
+        ];
+    },
 
-	save: function () {
-		return null;
-	},
+    save: function () {
+        return null;
+    },
 });

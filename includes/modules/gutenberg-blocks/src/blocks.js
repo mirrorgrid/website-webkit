@@ -9,20 +9,19 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/testimonial/block';
+import './blocks/testimonials/block';
 import './blocks/button/block';
 import './blocks/progress-bar/block';
+import './blocks/star-rating/block';
+import './blocks/social-share/block';
+import './blocks/tabbed-content/block';
+import './blocks/accordion/block';
+
+
+
 /*import './blocks/notification-box/block';
 import './blocks/call-to-action/block';
 import './blocks/divider/block';
 import './blocks/number-box/block';
-import './blocks/feature-box/block';
 import './blocks/click-to-tweet/block';
-import './blocks/social-share/block';
-import './blocks/content-toggle/block';
-
-import './blocks/tabbed-content/block';
-
-import './blocks/star-rating/block';
-import './blocks/table-of-contents/block';
 */

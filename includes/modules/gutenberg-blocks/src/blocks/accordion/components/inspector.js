@@ -38,11 +38,11 @@ export default class Inspector extends Component {
 				/>
 				<PanelBody title={ __( 'Initial State' ) } initialOpen={ true }>
 					<PanelRow>
-                        <label htmlFor="ub-content-toggle-state">
+                        <label htmlFor="gutenberg-blocks-content-toggle-state">
 							{ __( 'Collapsed' ) }
 						</label>
 						<FormToggle
-							id="ub-content-toggle-state"
+							id="gutenberg-blocks-content-toggle-state"
 							label={ __( 'Collapsed' ) }
 							checked={ this.props.attributes.collapsed }
 							onChange={ this.props.onCollapseChange }

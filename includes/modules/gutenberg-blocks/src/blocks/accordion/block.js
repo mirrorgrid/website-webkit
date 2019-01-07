@@ -33,30 +33,30 @@ const { RichText } = wp.editor;
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('ub/content-toggle', {
-	title: __('Content Toggle'),
+registerBlockType('gutenberg-blocks/accordion', {
+	title: __('Accordion'),
 	icon: icon,
-	category: 'ultimateblocks',
+	category: 'gutenberg-blocks',
 	keywords: [
 		__('Content Accordion'),
 		__('Toggle Collapse'),
-		__('Ultimate Blocks')
+		__('Gutenberg Blocks')
 	],
 
 	attributes: {
 		accordions: {
 			source: 'query',
-			selector: '.wp-block-ub-content-toggle-accordion',
+			selector: '.wp-block-gutenberg-blocks-content-toggle-accordion',
 			query: {
 				title: {
 					type: 'array',
 					source: 'children',
-					selector: '.wp-block-ub-content-toggle-accordion-title'
+					selector: '.wp-block-gutenberg-blocks-content-toggle-accordion-title'
 				},
 				content: {
 					type: 'array',
 					source: 'children',
-					selector: '.wp-block-ub-content-toggle-accordion-content'
+					selector: '.wp-block-gutenberg-blocks-content-toggle-accordion-content'
 				}
 			}
 		},
@@ -74,7 +74,7 @@ registerBlockType('ub/content-toggle', {
 		},
 		theme: {
 			type: 'string',
-			default: '#f63d3d'
+			default: '#005075'
 		},
 		collapsed: {
 			type: 'boolean',
@@ -206,7 +206,7 @@ registerBlockType('ub/content-toggle', {
 
 	save: function(props) {
 		const { accordions, collapsed, theme, titleColor } = props.attributes;
-		const classNamePrefix = 'wp-block-ub-content-toggle';
+		const classNamePrefix = 'wp-block-gutenberg-blocks-content-toggle';
 		return (
 			<div>
 				{accordions.map((accordion, i) => {
