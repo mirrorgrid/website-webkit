@@ -71,17 +71,6 @@ function gutenberg_blocks_cgb_editor_assets() {
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'gutenberg_blocks_cgb_editor_assets' );
-
-// Click to Tweet Block.
-
-
-// Social Share Block.
-require_once plugin_dir_path( __FILE__ ) . 'blocks/social-share/block.php';
-
-// Content toggle Block.
-
-
 // Tabbed Content Block.
 require_once plugin_dir_path( __FILE__ ) . 'blocks/tabbed-content/block.php';
 // Progress Bar Block.
-/*require_once plugin_dir_path( __FILE__ ) . 'blocks/progress-bar/block.php';*/

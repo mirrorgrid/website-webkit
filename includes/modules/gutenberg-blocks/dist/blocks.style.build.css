@@ -167,89 +167,12 @@
 .gutenberg-blocks-hide {
   display: none !important; }
 
-.gutenberg_blocks_progress-bar-line-trail {
-  stroke: #d9d9d9;
-  fill-opacity: 0;
-  stroke-linecap: 'round'; }
-
-.gutenberg_blocks_progress-bar-line-path {
-  stroke-dasharray: 100px, 100px;
-  -webkit-transition: stroke-dashoffset 0.3s ease 0s, stroke 0.3s linear 0s;
-  -o-transition: stroke-dashoffset 0.3s ease 0s, stroke 0.3s linear 0s;
-  transition: stroke-dashoffset 0.3s ease 0s, stroke 0.3s linear 0s;
-  fill-opacity: 0;
-  stroke-linecap: round; }
-
-.gutenberg_blocks_progress-bar-circle-path {
-  stroke-dashoffset: 0px;
-  -webkit-transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s, stroke-width 0.06s ease 0.3s;
-  -o-transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s, stroke-width 0.06s ease 0.3s;
-  transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s, stroke-width 0.06s ease 0.3s;
-  fill-opacity: 0; }
-
-.gutenberg_blocks_progress-bar-circle-trail {
-  stroke: #d9d9d9;
-  stroke-dashoffset: 0px;
-  -webkit-transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s;
-  -o-transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s;
-  transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s ease 0s;
-  fill-opacity: 0; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.gutenberg-blocks-hide {
-  display: none !important; }
-
 .gutenberg-blocks-star-container {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
   margin: 20px 0; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.gutenberg-blocks-hide {
-  display: none !important; }
-
-.wp-block-gutenberg-blocks-social-share .social-share-icons {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
-  .wp-block-gutenberg-blocks-social-share .social-share-icons .social-share-icon {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-        align-items: center;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -webkit-box-shadow: 0px 3px 2px grey;
-            box-shadow: 0px 3px 2px grey;
-    border-radius: 50%;
-    margin: 7px; }
-    .wp-block-gutenberg-blocks-social-share .social-share-icons .social-share-icon.circle {
-      border-radius: 50%; }
-    .wp-block-gutenberg-blocks-social-share .social-share-icons .social-share-icon.square {
-      border-radius: 0%; }
-
-.align-icons-center {
-  -ms-flex-pack: center;
-      justify-content: center; }
-
-.align-icons-left {
-  -ms-flex-pack: start;
-      justify-content: flex-start; }
-
-.align-icons-right {
-  -ms-flex-pack: end;
-      justify-content: flex-end; }
 /**
  * #.# Common SCSS
  *

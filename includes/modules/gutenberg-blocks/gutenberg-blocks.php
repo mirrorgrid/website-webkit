@@ -18,6 +18,7 @@ class MWW_Gutenberg_Blocks
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_plugin_scripts'));
         add_action( 'admin_enqueue_scripts', array($this, 'enqueue_plugin_scripts'));
         add_action( 'wp_ajax_mww_toggle_block_status', array($this, 'mww_toggle_block_status'));
+        add_action( 'admin_head', array($this, 'insert_blocks_settings' ));
 
     }
 
@@ -32,34 +33,42 @@ class MWW_Gutenberg_Blocks
     public function mww_toggle_block_status() {
         check_ajax_referer('mww_toggle_block_status');
 
+
         $block_name = sanitize_text_field( $_POST['block_name'] );
 
-        $enable = sanitize_text_field( $_POST['enable'] );
+        $enable = sanitize_text_field($_POST['enable']);
         if ( ! $this->block_exists( $block_name ) ) {
             wp_send_json_error( array(
                 'error_message' => 'Unknown Error',
             ));
         }
 
-        $saved_blocks = get_option( 'gutenberg_blocks', false );
+        $saved_blocks = get_option( 'mww_gutenberg_blocks', false );
         if ( $saved_blocks ) {
             foreach ( $saved_blocks as $key => $block ) {
-                if ( $block['name'] === $block_name ) {
-                    $saved_blocks[ $key ]['active'] = ( $enable === 'true' );
+                if ( $block['name'] == $block_name ) {
+                    $saved_blocks[ $key ]['active'] = ($enable === 'true');
                 }
             }
-            update_option( 'gutenberg_blocks', $saved_blocks );
+            update_option( 'mww_gutenberg_blocks', $saved_blocks );
+
         } else {
-            update_option( 'gutenberg_blocks', MWW_Gutenberg_Blocks::blocks() );
+            update_option( 'mww_gutenberg_blocks', MWW_Gutenberg_Blocks::blocks() );
         }
 
-        wp_send_json_success( get_option( 'gutenberg_blocks', false ) );
+        wp_send_json_success( get_option( 'mww_gutenberg_blocks', false ) );
+    }
+
+    public function insert_blocks_settings() {
+        $gutenberg_blocks_settings = wp_json_encode( get_option( 'mww_gutenberg_blocks', array() ) );
+        ?>
+        <script> window.mww_gutenberg_blocks=<?php echo $gutenberg_blocks_settings; ?> </script>
+        <?php
     }
 
      static function block_exists( $name ) {
-        $blocks = MWW_Gutenberg_Blocks::blocks();
+        $blocks = self::blocks();
 
-        $unknown_block = true;
         foreach ( $blocks as $key => $block ) {
             if ( $block['name'] === $name ) {
                 return true;
@@ -80,17 +89,15 @@ class MWW_Gutenberg_Blocks
 
     function activate_gutenberg_block()
     {
-        self::blocks();
-
-        $blocks = get_option( 'gutenberg_blocks', false );
-        if ( ! $blocks ) {
-            update_option( 'gutenberg_blocks', self::blocks() );
+        $blocks = get_option('mww_gutenberg_blocks', false);
+        if (!$blocks) {
+            update_option( 'mww_gutenberg_blocks', self::blocks() );
         }
     }
 
     public static function deactivate_gutenberg_block() {
 
-        delete_option( 'gutenberg_blocks' );
+        delete_option( 'mww_gutenberg_blocks' );
 
     }
 
@@ -109,18 +116,8 @@ class MWW_Gutenberg_Blocks
                 'active' => true,
             ),
             array(
-                'label'  => 'Progress Bar',
-                'name'   => 'gutenberg-blocks/progress-bar',
-                'active' => true,
-            ),
-            array(
                 'label'  => 'Star Rating',
                 'name'   => 'gutenberg-blocks/star-rating',
-                'active' => true,
-            ),
-            array(
-                'label'  => 'Social Share',
-                'name'   => 'gutenberg-blocks/social-share',
                 'active' => true,
             ),
             array(
@@ -142,7 +139,7 @@ class MWW_Gutenberg_Blocks
             array(
                 array(
                     'slug'  => 'gutenberg-blocks',
-                    'title' => __( 'Gutenberg Blocks', 'gutenberg-blocks' ),
+                    'title' => __('Gutenberg Blocks', 'gutenberg-blocks'),
                 ),
             )
         );

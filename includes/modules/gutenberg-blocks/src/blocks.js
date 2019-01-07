@@ -11,17 +11,6 @@
 
 import './blocks/testimonials/block';
 import './blocks/button/block';
-import './blocks/progress-bar/block';
 import './blocks/star-rating/block';
-import './blocks/social-share/block';
 import './blocks/tabbed-content/block';
 import './blocks/accordion/block';
-
-
-
-/*import './blocks/notification-box/block';
-import './blocks/call-to-action/block';
-import './blocks/divider/block';
-import './blocks/number-box/block';
-import './blocks/click-to-tweet/block';
-*/

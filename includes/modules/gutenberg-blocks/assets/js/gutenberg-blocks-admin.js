@@ -8,7 +8,7 @@
            /* insertBlocks();*/
         }
 
-        $(document).on('change', 'input[name="block_status"]', function () {
+        $(document).on('change', 'input[name="gutenberg_block_status"]', function () {
 
 
             toggleBlockStatus(
@@ -44,7 +44,6 @@
                 action: 'mww_toggle_block_status',
                 _ajax_nonce: $('input[name="gutenberg_blocks_nonce"]').val()
             };
-            debugger;
             $.ajax({
                 url: ajaxurl,
                 type: 'POST',

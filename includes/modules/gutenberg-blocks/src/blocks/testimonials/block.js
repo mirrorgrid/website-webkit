@@ -12,7 +12,6 @@ import remove_icon from './icons/remove_icon';
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
-import icons from "../testimonial/icons";
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
