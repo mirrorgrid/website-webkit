@@ -53,7 +53,7 @@ const {
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('gutenberg-blocks/testimonial', {
+registerBlockType('gutenberg-blocks/testimonials', {
 
     title: __('Testimonials'),
     icon: icon,

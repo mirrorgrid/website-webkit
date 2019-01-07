@@ -62,7 +62,7 @@ class MWW_Gutenberg_Blocks
     public function insert_blocks_settings() {
         $gutenberg_blocks_settings = wp_json_encode( get_option( 'mww_gutenberg_blocks', array() ) );
         ?>
-        <script> window.mww_gutenberg_blocks=<?php echo $gutenberg_blocks_settings; ?> </script>
+        <script> window.ultimate_blocks=<?php echo $gutenberg_blocks_settings; ?> </script>
         <?php
     }
 
