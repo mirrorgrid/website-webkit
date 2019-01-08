@@ -49,8 +49,12 @@
                 type: 'POST',
                 data: data,
                 'Content-Type': 'application/json',
+                beforeSend:function () {
+                    selector.parent().find('.gutenberg-loader').toggleClass('hidden')
+                },
                 success: function (data, status, xhr) {
                     selector.closest('.gutenberg_blocks_collection__item').toggleClass('active');
+                    selector.parent().find('.gutenberg-loader').toggleClass('hidden')
                 },
                 error: function (xhr, status, error) {
                     console.log(error);

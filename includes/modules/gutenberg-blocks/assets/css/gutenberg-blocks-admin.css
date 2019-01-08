@@ -160,3 +160,9 @@ input:checked+.gutenberg-blocks-switch-input-slider {
     color: #f64646;
     border-bottom: 2px solid #f64646;
 }
+
+.gutenberg-loader{
+    height:100px;
+    margin-top: -40px;
+    margin-left: 50px;
+}
