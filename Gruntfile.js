@@ -152,7 +152,7 @@ module.exports = function( grunt ){
         makepot: {
             options: {
                 type: 'wp-plugin',
-                domainPath: 'i18n/languages/',
+                domainPath: 'languages/',
                 potHeaders: {
                     'report-msgid-bugs-to': 'themeeggofficial@gmail.com',
                     'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
@@ -160,7 +160,7 @@ module.exports = function( grunt ){
             },
             dist: {
                 options: {
-                    potFilename: 'themeegg-toolkit.pot',
+                    potFilename: 'website-webkit.pot',
                     exclude: [
                         'vendor/.*'
                     ]
@@ -237,7 +237,7 @@ module.exports = function( grunt ){
         // Compress files and folders.
         compress: {
             options: {
-                archive: 'themeegg-toolkit.zip'
+                archive: 'themeegg-website-webkit.zip'
             },
             files: {
                 src: [

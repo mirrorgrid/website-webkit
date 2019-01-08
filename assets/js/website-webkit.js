@@ -2,10 +2,8 @@
  * Created by Nepsrock on 2018-11-28.
  */
 
-var mww_website_ids_global_object = {"ajax_url":"http://localhost/wordpress/wp-admin/admin-ajax.php"};
 $ = jQuery;
 function mww_activate (moduleId,nonce,thisObj) {
-    debugger;
     $.ajax({
         url: ajaxurl,
         type: 'POST',

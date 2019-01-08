@@ -22,19 +22,6 @@ final class Website_Webkit
         return self::$_instance;
     }
 
-
-    public function __clone()
-    {
-        wc_doing_it_wrong(__FUNCTION__, __('Cloning is forbidden.', 'website-webkit'), '1.0.0');
-    }
-
-
-    public function __wakeup()
-    {
-        wc_doing_it_wrong(__FUNCTION__, __('Unserializing instances of this class is forbidden.', 'website-webkit'), '1.0.0');
-    }
-
-
     public function __construct()
     {
         $this->define_constants();
@@ -51,6 +38,7 @@ final class Website_Webkit
     {
         add_action('init', array($this, 'include_modules'));
         add_action('admin_enqueue_scripts',array($this, 'script_register'));
+        add_action( 'plugins_loaded', array($this,'load_plugin_textdomain' ));
 
     }
 
@@ -142,8 +130,9 @@ final class Website_Webkit
 
         include_once MWW_ABSPATH . 'includes/functions.php';
 
-        if ($this->is_request('admin')) {
-            include_once MWW_ABSPATH . 'includes/admin/class-mww-admin.php';
+        if (!empty($this->is_request('admin'))) {
+            include_once MWW_ABSPATH . 'includes/admin/admin-functions.php';
+
         }
 
         if ($this->is_request('frontend')) {
@@ -211,6 +200,16 @@ final class Website_Webkit
     public function template_path()
     {
         return apply_filters('website_webkit_template_path', 'website_webkit_');
+    }
+
+    public function load_plugin_textdomain() {
+
+        load_plugin_textdomain(
+            'website-webkit',
+            false,
+            dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+        );
+
     }
 
 

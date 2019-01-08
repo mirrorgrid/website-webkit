@@ -21,5 +21,3 @@ function mww_get_active_modules()
     return apply_filters('mg-mww-active-modules', $active_modules);
 
 }
-
-?>

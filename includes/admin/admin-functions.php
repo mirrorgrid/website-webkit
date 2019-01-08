@@ -36,13 +36,11 @@ function mww_admin_menu_option()
     );
 
     remove_submenu_page('website-webkit','website-webkit');
-
 }
 
 function mww_activate()
 {
     if (wp_verify_nonce($_POST['security'],'mww-ajax-nonce')) {
-        print_r($_POST['security']);
         if (array_key_exists('action', $_POST) && $_POST['action'] == 'activate' && $_POST['module_id']) {
             mwww_activate_module($_POST['module_id']);
             echo 'Activated';
@@ -66,7 +64,7 @@ add_action('admin_menu', 'mww_admin_menu_option');
 
 function mww_get_plugin_pages()
 {
-    $page = $_GET['page'];
+    $page = isset($_GET['page']) ? $_GET['page'] : 'website-webkit' ;
     if ($page == 'website-webkit'){
         $page = 'dashboard';
     }
@@ -143,7 +141,7 @@ function mwww_deactivate_module($module_id)
         $all_active_unique_modules = array_diff($active_modules, array($module_id));
         update_option('mg-mww-activate-modules', $all_active_unique_modules);
         if ($module_id == 'gutenberg-blocks'){
-            apply_filters('deactivate_gutenberg_block');
+            apply_filters('deactivate_gutenberg_block',$module_id);
         }
     }
 

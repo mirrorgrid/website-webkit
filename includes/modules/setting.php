@@ -118,32 +118,22 @@ if (isset($_GET['tab'])) {
             </tr>
             </thead>
             <tbody id="the-list">
-            <?php if (count(get_option('gutenberg_blocks', [])) !== 0) { ?>
-                <?php foreach (get_option('gutenberg_blocks', array()) as $block) { ?>
+            <?php if (count(get_option('mww_gutenberg_blocks', [])) !== 0) { ?>
+                <?php foreach (get_option('mww_gutenberg_blocks', array()) as $block) { ?>
                     <tr class="gutenberg_blocks_collection__item <?php echo $block['active'] ? 'active' : ''; ?>">
                         <td class="title block_name" data-id="<?php echo esc_html($block['name']); ?>">
                             <strong><a class="row-title"
                                        href="#"><?php printf(esc_html__('%s', 'gutenberg-blocks'), $block['label']); ?></a></strong>
                         </td>
                         <td>
-                            <input type="checkbox" name="block_status" <?php echo $block['active'] ? 'checked' : ''; ?>>
+                            <input type="checkbox" name="gutenberg_block_status" <?php echo $block['active'] ? 'checked' : ''; ?>>
                         </td>
                     </tr>
                 <?php } ?>
                 <input type="hidden" name="gutenberg_blocks_nonce"
-                       value="<?php echo esc_html(wp_create_nonce('toggle_block_status')); ?>">
-                <input type="hidden" name="gutenberg_blocks_ajax_url"
-                       value="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
+                       value="<?php echo esc_html(wp_create_nonce('mww_toggle_block_status')); ?>">
             <?php } ?>
             </tbody>
         </table>
     </div>
-
-<?php } ?>
-
-<?php
-
-
-
-
-
+<?php }
