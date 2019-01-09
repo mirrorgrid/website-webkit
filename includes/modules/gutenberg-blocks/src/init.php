@@ -13,25 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * Enqueue Gutenberg block assets for both frontend + backend.
- *
- * `wp-blocks`: includes block type registration and related functions.
- *
- * @since 1.0.0
- */
-function gutenberg_blocks_cgb_block_assets() {
-    // Styles.
-    wp_enqueue_style(
-        'gutenberg_blocks-cgb-style-css', // Handle.
-        plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-        array() // Dependency to include the CSS after it.
-    // filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
-    );
-} // End function gutenberg_blocks_cgb_block_assets().
-
-// Hook: Frontend assets.
-add_action( 'enqueue_block_assets', 'gutenberg_blocks_cgb_block_assets' );
 
 /**
  * Enqueue Gutenberg block assets for backend editor.
@@ -71,6 +52,26 @@ function gutenberg_blocks_cgb_editor_assets() {
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'gutenberg_blocks_cgb_editor_assets' );
+
+/**
+ * Enqueue Gutenberg block assets for both frontend + backend.
+ *
+ * `wp-blocks`: includes block type registration and related functions.
+ *
+ * @since 1.0.0
+ */
+function gutenberg_blocks_cgb_block_assets() {
+    // Styles.
+    wp_enqueue_style(
+        'gutenberg_blocks-cgb-style-css', // Handle.
+        plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
+        array() // Dependency to include the CSS after it.
+    // filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
+    );
+} // End function gutenberg_blocks_cgb_block_assets().
+
+// Hook: Frontend assets.
+add_action( 'enqueue_block_assets', 'gutenberg_blocks_cgb_block_assets' );
 // Tabbed Content Block.
 require_once plugin_dir_path( __FILE__ ) . 'blocks/tabbed-content/block.php';
 // Progress Bar Block.

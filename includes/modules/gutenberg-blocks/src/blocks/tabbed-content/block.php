@@ -15,4 +15,4 @@ function gutenberg_blocks_tabbed_content_add_frontend_assets() {
 	);
 }
 
-add_action( 'wp_enqueue_scripts', 'ub_tabbed_content_add_frontend_assets' );
+add_action( 'wp_enqueue_scripts', 'gutenberg_blocks_tabbed_content_add_frontend_assets' );

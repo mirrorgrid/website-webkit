@@ -13,6 +13,8 @@ import remove_icon from './icons/remove_icon';
 import './style.scss';
 import './editor.scss';
 
+
+
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
@@ -22,17 +24,11 @@ const {
     ColorPalette,
     BlockControls,
     RichText,
-    MediaUpload
 } = wp.editor;
 
 const {
     PanelBody,
-    Toolbar,
     RangeControl,
-    Dashicon,
-    SelectControl,
-    Button,
-    withAPIData
 } = wp.components;
 
 const {
@@ -66,88 +62,69 @@ registerBlockType('gutenberg-blocks/testimonials', {
     attributes: {
         column: {
             type: 'number',
-            default: '2'
+            default: 1
         },
         columnOneTitle: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_one_title',
+            selector: '.title',
             default: 'John Doe'
         },
         columnTwoTitle: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_two_title',
+            selector: '.title',
             default: 'John Doe'
         },
         columnThreeTitle: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_three_title',
+            selector: '.title',
             default: 'John Doe'
         },
         columnOneBody: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_one_body',
-            default: 'Add testimonial text here'
+            selector: '.description',
+            default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.'
         },
         columnTwoBody: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_two_body',
-            default: 'Add testimonial text here'
+            selector: '.description',
+            default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.'
         },
         columnThreeBody: {
             type: 'array',
             source: 'children',
-            selector: '.gutenberg_blocks_feature_three_body',
-            default: 'Add testimonial text here'
+            selector: '.description',
+            default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.'
         },
-        imgOneURL: {
-            type: 'string',
-            source: 'attribute',
-            attribute: 'src',
-            selector: '.gutenberg_blocks_feature_one_img',
+        columnOneDesignation: {
+            type: 'array',
+            source: 'children',
+            selector: '.post',
+            default: 'Designation'
         },
-        imgOneID: {
+        columnTwoDesignation: {
+            type: 'array',
+            source: 'children',
+            selector: '.post',
+            default: 'Designation'
+        },
+        columnThreeDesignation: {
+            type: 'array',
+            source: 'children',
+            selector: '.post',
+            default: 'Designation'
+        },
+        textSize: {
             type: 'number',
+            default: 17
         },
-        imgOneAlt: {
+        textColor: {
             type: 'string',
-            source: 'attribute',
-            attribute: 'alt',
-            selector: '.gutenberg_blocks_feature_one_img',
-        },
-        imgTwoURL: {
-            type: 'string',
-            source: 'attribute',
-            attribute: 'src',
-            selector: '.gutenberg_blocks_feature_two_img',
-        },
-        imgTwoID: {
-            type: 'number',
-        },
-        imgTwoAlt: {
-            type: 'string',
-            source: 'attribute',
-            attribute: 'alt',
-            selector: '.gutenberg_blocks_feature_two_img',
-        },
-        imgThreeURL: {
-            type: 'string',
-            source: 'attribute',
-            attribute: 'src',
-            selector: '.gutenberg_blocks_feature_three_img',
-        },
-        imgThreeID: {
-            type: 'number',
-        },
-        imgThreeAlt: {
-            type: 'string',
-            source: 'attribute',
-            attribute: 'alt',
-            selector: '.gutenberg_blocks_feature_three_img',
+            default: '#444444'
         },
     },
 
@@ -174,75 +151,15 @@ registerBlockType('gutenberg-blocks/testimonials', {
             columnOneBody,
             columnTwoBody,
             columnThreeBody,
-            imgOneURL,
-            imgOneID,
-            imgOneAlt,
-            imgTwoURL,
-            imgTwoID,
-            imgTwoAlt,
-            imgThreeURL,
-            imgThreeID,
-            imgThreeAlt,
+            columnOneDesignation,
+            columnTwoDesignation,
+            columnThreeDesignation,
         } = props.attributes;
 
-        const columns = [
-            { value: '1', label: __('One Column') },
-            { value: '2', label: __('Two Column') },
-            { value: '3', label: __('Three Column') },
-        ];
 
         const onSetActiveEditable = (newEditable) => () => {
             setState({ editable: newEditable })
         };
-
-        const onSelectImageOne = img => {
-            props.setAttributes({
-                imgOneID: img.id,
-                imgOneURL: img.url,
-                imgOneAlt: img.alt,
-            });
-        };
-
-        const onSelectImageTwo = img => {
-            props.setAttributes({
-                imgTwoID: img.id,
-                imgTwoURL: img.url,
-                imgTwoAlt: img.alt,
-            });
-        };
-
-        const onSelectImageThree = img => {
-            props.setAttributes({
-                imgThreeID: img.id,
-                imgThreeURL: img.url,
-                imgThreeAlt: img.alt,
-            });
-        };
-
-        const onRemoveImageOne = () => {
-            props.setAttributes({
-                imgOneID: null,
-                imgOneURL: null,
-                imgOneAlt: null,
-            });
-        };
-
-        const onRemoveImageTwo = () => {
-            props.setAttributes({
-                imgTwoID: null,
-                imgTwoURL: null,
-                imgTwoAlt: null,
-            });
-        };
-
-        const onRemoveImageThree = () => {
-            props.setAttributes({
-                imgThreeID: null,
-                imgThreeURL: null,
-                imgThreeAlt: null,
-            });
-        };
-
         return [
 
             isSelected && (
@@ -262,170 +179,132 @@ registerBlockType('gutenberg-blocks/testimonials', {
                             max={ 3 }
                         />
                     </PanelBody>
+                    <PanelBody
+                        title={__('Testimonial Body')}
+                    >
+                        <p>Font Color</p>
+                        <ColorPalette
+                            value={props.attributes.textColor}
+                            onChange={(colorValue) => props.setAttributes({ textColor: colorValue })}
+                            allowReset
+                        />
+                    </PanelBody>
                 </InspectorControls>
             ),
 
             <div key={'editable'} className={props.className}>
-                <div className={`gutenberg_blocks_feature_box column_${column}`}>
-                    <div class="gutenberg_blocks_feature_1">
-                        {!props.attributes.imgOneID ? (
+                    <div className={`testimonial-sample2 column_${column}`}>
+                            <div class="testimonial testimonial_1">
+                                <div class="testimonial-content">
+                                    <div class="testimonial-icon">
+                                      <span class="dashicons dashicons-editor-quote"></span>
+                                    </div>
+                                    <RichText
+                                        tagName="p"
+                                        className="description"
+                                        style={{
+                                            color: props.attributes.textColor,
+                                        }}
+                                        value={columnOneBody}
+                                        onChange={(value) => props.setAttributes({ columnOneBody: value })}
+                                        isSelected={isSelected && editable === 'body_one'}
+                                        onFocus={onSetActiveEditable('body_one')}
+                                        keepPlaceholderOnFocus={true}
+                                    />
+                                </div>
+                                <RichText
+                                    tagName="h3"
+                                    className="title"
+                                    value={columnOneTitle}
+                                    onChange={(value) => props.setAttributes({ columnOneTitle: value })}
+                                    isSelected={isSelected && editable === 'title_one'}
+                                    onFocus={onSetActiveEditable('title_one')}
+                                    keepPlaceholderOnFocus={true}
+                                />
+                                    <RichText
+                                        tagName="span"
+                                        className="post"
+                                        value={columnOneDesignation}
+                                        onChange={(value) => props.setAttributes({ columnOneDesignation: value })}
+                                        isSelected={isSelected && editable === 'designation_one'}
+                                        onFocus={onSetActiveEditable('designation_one')}
+                                        keepPlaceholderOnFocus={true}
+                                    />
+                            </div>
+                        <div class="testimonial testimonial_2">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <span class="dashicons dashicons-editor-quote"></span>
+                                </div>
+                                    <RichText
+                                        tagName="p"
+                                        className="description"
+                                        value={columnTwoBody}
+                                        onChange={(value) => props.setAttributes({ columnTwoBody: value })}
+                                        isSelected={isSelected && editable === 'body_two'}
+                                        onFocus={onSetActiveEditable('body_two')}
+                                        keepPlaceholderOnFocus={true}
+                                    />
+                            </div>
+                            <RichText
+                                tagName="h3"
+                                className="title"
+                                value={columnTwoTitle}
+                                onChange={(value) => props.setAttributes({ columnTwoTitle: value })}
+                                isSelected={isSelected && editable === 'title_two'}
+                                onFocus={onSetActiveEditable('title_two')}
+                                keepPlaceholderOnFocus={true}
+                            />
+                            <RichText
+                                tagName="span"
+                                className="post"
+                                value={columnTwoDesignation}
+                                onChange={(value) => props.setAttributes({ columnTwoDesignation: value })}
+                                isSelected={isSelected && editable === 'designation_two'}
+                                onFocus={onSetActiveEditable('designation_two')}
+                                keepPlaceholderOnFocus={true}
+                            />
+                        </div>
 
-                            <div className="gutenberg_blocks_feature_upload_button">
-                                <MediaUpload
-                                    onSelect={onSelectImageOne}
-                                    type="image"
-                                    value={imgOneID}
-                                    render={({ open }) => (
-                                        <Button
-                                            className="components-button button button-medium"
-                                            onClick={open}>
-                                            Upload Image
-                                            </Button>
-                                    )}
+                        <div class="testimonial testimonial_3">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <span class="dashicons dashicons-editor-quote"></span>
+                                </div>
+
+                                <RichText
+                                    tagName="p"
+                                    className="description"
+                                    value={columnThreeBody}
+                                    onChange={(value) => props.setAttributes({ columnThreeBody: value })}
+                                    isSelected={isSelected && editable === 'body_three'}
+                                    onFocus={onSetActiveEditable('body_three')}
+                                    keepPlaceholderOnFocus={true}
                                 />
                             </div>
-                        ) : (
-                                <React.Fragment>
-                                    {props.focus ? (
-                                        <Button
-                                            className="remove-image"
-                                            onClick={onRemoveImageOne}
-                                        >
-                                            {remove_icon}
-                                        </Button>
-                                    ) : null}
-                                    <img
-                                        className="gutenberg_blocks_feature_one_img"
-                                        src={imgOneURL}
-                                        alt={imgOneAlt}
-                                    />
-                                </React.Fragment>
-                            )}
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_one_title"
-                            value={columnOneTitle}
-                            onChange={(value) => props.setAttributes({ columnOneTitle: value })}
-                            isSelected={isSelected && editable === 'title_one'}
-                            onFocus={onSetActiveEditable('title_one')}
-                            keepPlaceholderOnFocus={true}
-                        />
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_one_body"
-                            value={columnOneBody}
-                            onChange={(value) => props.setAttributes({ columnOneBody: value })}
-                            isSelected={isSelected && editable === 'body_one'}
-                            onFocus={onSetActiveEditable('body_one')}
-                            keepPlaceholderOnFocus={true}
-                        />
+                            <RichText
+                                tagName="h3"
+                                className="title"
+                                value={columnThreeTitle}
+                                onChange={(value) => props.setAttributes({ columnThreeTitle: value })}
+                                isSelected={isSelected && editable === 'title_three'}
+                                onFocus={onSetActiveEditable('title_three')}
+                                keepPlaceholderOnFocus={true}
+                            />
+                            <RichText
+                                tagName="span"
+                                className="post"
+                                value={columnThreeDesignation}
+                                onChange={(value) => props.setAttributes({ columnThreeDesignation: value })}
+                                isSelected={isSelected && editable === 'designation_three'}
+                                onFocus={onSetActiveEditable('designation_three')}
+                                keepPlaceholderOnFocus={true}
+                            />
+                        </div>
                     </div>
-                    <div class="gutenberg_blocks_feature_2">
-                        {!props.attributes.imgTwoID ? (
-                            <div className="gutenberg_blocks_feature_upload_button">
-                                <MediaUpload
-                                    onSelect={onSelectImageTwo}
-                                    type="image"
-                                    value={imgTwoID}
-                                    render={({ open }) => (
-                                        <Button
-                                            className="components-button button button-medium"
-                                            onClick={open}>
-                                            Upload Image
-                                            </Button>
-                                    )}
-                                />
-                            </div>
-                        ) : (
-                                <React.Fragment>
-                                    {props.focus ? (
-                                        <Button
-                                            className="remove-image"
-                                            onClick={onRemoveImageTwo}
-                                        >
-                                            {remove_icon}
-                                        </Button>
-                                    ) : null}
-                                    <img
-                                        className="gutenberg_blocks_feature_two_img"
-                                        src={imgTwoURL}
-                                        alt={imgTwoAlt}
-                                    />
-                                </React.Fragment>
-                            )}
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_two_title"
-                            value={columnTwoTitle}
-                            onChange={(value) => props.setAttributes({ columnTwoTitle: value })}
-                            isSelected={isSelected && editable === 'title_two'}
-                            onFocus={onSetActiveEditable('title_two')}
-                            keepPlaceholderOnFocus={true}
-                        />
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_two_body"
-                            value={columnTwoBody}
-                            onChange={(value) => props.setAttributes({ columnTwoBody: value })}
-                            isSelected={isSelected && editable === 'body_two'}
-                            onFocus={onSetActiveEditable('body_two')}
-                            keepPlaceholderOnFocus={true}
-                        />
-                    </div>
-                    <div class="gutenberg_blocks_feature_3">
-                        {!props.attributes.imgThreeID ? (
-                            <div className="gutenberg_blocks_feature_upload_button">
-                                <MediaUpload
-                                    onSelect={onSelectImageThree}
-                                    type="image"
-                                    value={imgThreeID}
-                                    render={({ open }) => (
-                                        <Button
-                                            className="components-button button button-medium"
-                                            onClick={open}>
-                                            Upload Image
-                                            </Button>
-                                    )}
-                                />
-                            </div>
-                        ) : (
-                                <React.Fragment>
-                                    {props.focus ? (
-                                        <Button
-                                            className="remove-image"
-                                            onClick={onRemoveImageThree}
-                                        >
-                                            {remove_icon}
-                                        </Button>
-                                    ) : null}
-                                    <img
-                                        className="gutenberg_blocks_feature_three_img"
-                                        src={imgThreeURL}
-                                        alt={imgThreeAlt}
-                                    />
-                                </React.Fragment>
-                            )}
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_three_title"
-                            value={columnThreeTitle}
-                            onChange={(value) => props.setAttributes({ columnThreeTitle: value })}
-                            isSelected={isSelected && editable === 'title_three'}
-                            onFocus={onSetActiveEditable('title_three')}
-                            keepPlaceholderOnFocus={true}
-                        />
-                        <RichText
-                            tagName="p"
-                            className="gutenberg_blocks_feature_three_body"
-                            value={columnThreeBody}
-                            onChange={(value) => props.setAttributes({ columnThreeBody: value })}
-                            isSelected={isSelected && editable === 'body_three'}
-                            onFocus={onSetActiveEditable('body_three')}
-                            keepPlaceholderOnFocus={true}
-                        />
-                    </div>
+
                 </div>
-            </div>
+
         ];
     },
     ),
@@ -447,46 +326,51 @@ registerBlockType('gutenberg-blocks/testimonials', {
             columnOneBody,
             columnTwoBody,
             columnThreeBody,
-            imgOneURL,
-            imgOneID,
-            imgOneAlt,
-            imgTwoURL,
-            imgTwoID,
-            imgTwoAlt,
-            imgThreeURL,
-            imgThreeID,
-            imgThreeAlt,
+            columnOneDesignation,
+            columnTwoDesignation,
+            columnThreeDesignation,
         } = props.attributes;
 
         return (
             <div className={props.className}>
-                <div className={`gutenberg_blocks_feature_box column_${column}`}>
-                    <div class="gutenberg_blocks_feature_1">
-                        <img
-                            className="gutenberg_blocks_feature_one_img"
-                            src={imgOneURL}
-                            alt={imgOneAlt}
-                        />
-                        <p className="gutenberg_blocks_feature_one_title">{columnOneTitle}</p>
-                        <p className="gutenberg_blocks_feature_one_body">{columnOneBody}</p>
+                <div className={`testimonial-sample2 column_${column}`}>
+                    <div class="testimonial testimonial_1">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <span class="dashicons dashicons-editor-quote"></span>
+                            </div>
+
+                            <p class="description">
+                                {columnOneBody}
+                            </p>
+                        </div>
+                        <h3 class="title">{columnOneTitle}</h3>
+                        <span class="post">{columnOneDesignation}</span>
                     </div>
-                    <div class="gutenberg_blocks_feature_2">
-                        <img
-                            className="gutenberg_blocks_feature_two_img"
-                            src={imgTwoURL}
-                            alt={imgTwoAlt}
-                        />
-                        <p className="gutenberg_blocks_feature_two_title">{columnTwoTitle}</p>
-                        <p className="gutenberg_blocks_feature_two_body">{columnTwoBody}</p>
+                    <div class="testimonial testimonial_2">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <span class="dashicons dashicons-editor-quote"></span>
+                            </div>
+
+                            <p class="description">
+                                {columnTwoBody}
+                            </p>
+                        </div>
+                        <h3 class="title">{columnTwoTitle}</h3>
+                        <span class="post">{columnTwoDesignation}</span>
                     </div>
-                    <div class="gutenberg_blocks_feature_3">
-                        <img
-                            className="gutenberg_blocks_feature_three_img"
-                            src={imgThreeURL}
-                            alt={imgThreeAlt}
-                        />
-                        <p className="gutenberg_blocks_feature_three_title">{columnThreeTitle}</p>
-                        <p className="gutenberg_blocks_feature_three_body">{columnThreeBody}</p>
+                    <div class="testimonial testimonial_3">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                {columnThreeBody}
+                            </p>
+                        </div>
+                        <h3 class="title">{columnThreeTitle}</h3>
+                        <span class="post">{columnThreeDesignation}</span>
                     </div>
                 </div>
             </div>
