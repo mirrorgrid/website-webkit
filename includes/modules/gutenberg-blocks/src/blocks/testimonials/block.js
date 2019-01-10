@@ -194,6 +194,7 @@ registerBlockType('gutenberg-blocks/testimonials', {
 
             <div key={'editable'} className={props.className}>
                     <div className={`testimonial-sample2 column_${column}`}>
+                        <div id="testimonial-slider123" className="testimonial-wrapper">
                             <div class="testimonial testimonial_1">
                                 <div class="testimonial-content">
                                     <div class="testimonial-icon">
@@ -302,7 +303,7 @@ registerBlockType('gutenberg-blocks/testimonials', {
                             />
                         </div>
                     </div>
-
+                    </div>
                 </div>
 
         ];
@@ -334,6 +335,7 @@ registerBlockType('gutenberg-blocks/testimonials', {
         return (
             <div className={props.className}>
                 <div className={`testimonial-sample2 column_${column}`}>
+                    <div id="testimonial-slider123" className="testimonial-wrapper">
                     <div class="testimonial testimonial_1">
                         <div class="testimonial-content">
                             <div class="testimonial-icon">
@@ -372,6 +374,7 @@ registerBlockType('gutenberg-blocks/testimonials', {
                         <h3 class="title">{columnThreeTitle}</h3>
                         <span class="post">{columnThreeDesignation}</span>
                     </div>
+                </div>
                 </div>
             </div>
         );

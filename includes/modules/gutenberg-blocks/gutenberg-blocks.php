@@ -25,8 +25,15 @@ class MWW_Gutenberg_Blocks
 
     public function enqueue_plugin_scripts()
     {
+
+
         wp_enqueue_style('gutenberg-blocks-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/gutenberg-blocks-admin.css',false);
+
         wp_enqueue_script('gutenberg-blocks-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/gutenberg-blocks-admin.js', array('jquery'));
+
+        wp_enqueue_style('slick-style', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/css/slick.css',false);
+        wp_enqueue_script('slick-js', esc_url(MWW()->plugin_url()) . '/includes/modules/gutenberg-blocks/assets/js/slick.min.js', array('jquery'));
+
 
     }
 
