@@ -1,0 +1,68 @@
+
+
+/**
+ * #.# Styles for CTA Block.
+ *
+ * CSS for both Frontend+Backend.
+ */
+.ugb-testimonial {
+	display: flex;
+	flex-wrap: wrap;
+	.testimonial-image {
+		height: 75px;
+		width: 75px;
+		background-size: cover;
+		background-position: center;
+		border-radius: 100%;
+		margin: 0 auto 1.3rem;
+	}
+	> div {
+		text-align: center;
+		p {
+			text-align: center;
+		}
+		flex: 1;
+		min-width: 250px;
+		&,
+		&:first-child,
+		&:last-child {
+
+		}
+	}
+	h4 {
+		margin: 0 0 0.5rem !important;
+		padding-top: 0;
+	}
+}
+
+/**
+ * Deprecated. < v1.5
+ */
+.ugb-testimonial {
+	.ugb-testimonial-position,
+	.ugb-testimonial-position-two,
+	.ugb-testimonial-position-three {
+		opacity: 0.3;
+		font-size: 0.75em;
+		margin: 0 0 1rem;
+		text-transform: uppercase;
+	}
+	.ugb-testimonial-body,
+	.ugb-testimonial-body-two,
+	.ugb-testimonial-body-three {
+		opacity: 0.5;
+		margin: 0 0 1rem;
+		left: 0;
+	}
+	.quote-icon {
+		height: 75px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		svg {
+			height: 50px;
+			width: auto;
+			fill: #e6e6e6;
+		}
+	}
+}

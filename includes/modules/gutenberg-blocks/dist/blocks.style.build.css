@@ -200,7 +200,7 @@
   text-shadow: none; }
 
 .testimonial-wrap .slick-next:after {
-  display: block;
+  display: none !important;
   content: "\f105";
   font: normal normal normal 14px/1 FontAwesome;
   color: #333;
@@ -219,7 +219,7 @@
   text-shadow: none; }
 
 .testimonial-wrap .slick-prev:after {
-  display: block;
+  display: none !important;
   content: "\f104";
   font: normal normal normal 14px/1 FontAwesome;
   color: #333;
@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
   /* Large Devices, Wide Screens */ }
 
 .testimonial-wrapper .slick-next:after {
-  display: block;
+  display: none;
   content: "\f105";
   font: normal normal normal 14px/1 FontAwesome;
   color: #fff;
@@ -390,7 +390,7 @@ h1, h2, h3, h4, h5, h6 {
   /* Large Devices, Wide Screens */ }
 
 .testimonial-wrapper .slick-prev:after {
-  display: block;
+  display: none;
   content: "\f104";
   font: normal normal normal 14px/1 FontAwesome;
   color: #fff;
@@ -730,99 +730,6 @@ body {
     width: 100%;
     margin-top: 30px; } }
 
-.testimonial-wrapbox {
-  background: #2e3a59;
-  padding: 40px 0; }
-
-.testimonial-wrapbox h1 {
-  margin-bottom: 60px;
-  text-transform: uppercase;
-  text-align: center;
-  color: #fff;
-  font-weight: 600;
-  /* Large Devices, Wide Screens */ }
-
-@media (max-width: 767px) {
-  .testimonial-wrapbox h1 {
-    margin-bottom: 30px; } }
-
-.testimonial-wrapbox .testimonial-view {
-  background: #faf8d4;
-  border-left: 6px solid #ff1053;
-  -webkit-box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.06);
-          box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.06);
-  padding: 30px 30px 30px 130px;
-  margin: 0 15px 30px 15px;
-  overflow: hidden;
-  position: relative; }
-
-.testimonial-wrapbox .testimonial-view:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  border-top: 25px solid #ff1053;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  -webkit-transform-origin: 80% -30% 0;
-      -ms-transform-origin: 80% -30% 0;
-          transform-origin: 80% -30% 0; }
-
-.testimonial-wrapbox .testimonial-view .pic-vw {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: absolute;
-  top: 60px;
-  left: 20px; }
-
-.testimonial-wrapbox .testimonial-view .pic-vw img {
-  width: 100%;
-  height: auto; }
-
-.testimonial-wrapbox .testimonial-view .description-vw {
-  font-size: 15px;
-  font-style: italic;
-  color: #fff8e5;
-  line-height: 25px;
-  margin-bottom: 15px;
-  text-align: justify;
-  /*i {
-            font-size: 20px;
-            color: #ff1053;
-            padding-right: 10px;
-          }*/ }
-
-.testimonial-wrapbox .testimonial-view .description-vw:before {
-  content: "\f10d";
-  font-family: FontAwesome;
-  position: absolute;
-  top: 28px;
-  left: 100px;
-  font-weight: 900;
-  display: inline-block;
-  width: 100%;
-  font-size: 24px;
-  color: #ff1053;
-  /*margin-top: 20px;*/ }
-
-.testimonial-wrapbox .testimonial-view .title-vw {
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 700;
-  color: #ff1053;
-  margin: 0; }
-
-.testimonial-wrapbox .testimonial-view .post-vw {
-  display: inline-block;
-  font-size: 17px;
-  color: #8e052b; }
-
 @media only screen and (max-width: 767px) {
   .testimonial-view {
     padding: 20px;
@@ -847,7 +754,8 @@ body {
   .testimonial-client h1 {
     margin-bottom: 30px; } }
 
-.testimonial-sample2.column_1 .testimonial_2, .testimonial-sample2.column_1 .testimonial_3 {
+.testimonial-sample2.column_1 > *:nth-child(2),
+.testimonial-sample2.column_1 > *:nth-child(3) {
   display: none; }
 
 .testimonial-sample2.column_1 > div {
@@ -856,7 +764,7 @@ body {
   margin-right: .5rem;
   padding: 1rem; }
 
-.testimonial-sample2.column_2 .testimonial_3 {
+.testimonial-sample2.column_2 > *:nth-child(3) {
   display: none; }
 
 .testimonial-sample2.column_2 > div {
@@ -864,22 +772,24 @@ body {
   margin-left: .5rem;
   margin-right: .5rem;
   padding: 1rem;
-  display: -ms-inline-flexbox;
-  display: inline-flex; }
+  display: -ms-flexbox;
+  display: flex; }
 
 .testimonial-sample2.column_3 > div {
   width: 100%;
   margin-left: .5rem;
   margin-right: .5rem;
   padding: 1rem;
-  display: -ms-inline-flexbox;
-  display: inline-flex; }
+  display: block; }
 
 .testimonial-sample2.column_3 > div:first-child {
   margin-left: 0; }
 
 .testimonial-sample2.column_3 > div:last-child {
   margin-right: 0; }
+
+.slick-arrow {
+  display: none !important; }
 /**
  * #.# Common SCSS
  *

@@ -1,0 +1,17 @@
+/**
+ * #.# Editor Styles for CTA Block
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.ugb-testimonial.columns-1 {
+	> *:nth-child(2),
+	> *:nth-child(3) {
+		display: none;
+	}
+}
+.ugb-testimonial.columns-2 {
+	> *:nth-child(3) {
+		display: none;
+	}
+}
