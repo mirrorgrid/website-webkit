@@ -21,7 +21,14 @@
 
 
         $(document).ready(function () {
-            $('#testimonial-slider123').slick({});
+            $('.testimonial-sample2').slick({
+                dots: true,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            });
         });
         $(document).on('click', '.filter-action', function () {
             $('.filter-action').removeClass('active');

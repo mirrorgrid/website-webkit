@@ -12,9 +12,10 @@ const { registerBlockType } = wp.blocks;
 
 const {
     InspectorControls,
-    ColorPalette,
     BlockControls,
     RichText,
+    ColorPalette,
+    PanelColorSettings
 } = wp.editor;
 
 const {
@@ -92,7 +93,27 @@ registerBlockType('gutenberg-blocks/testimonials', {
         },
         textColor: {
             type: 'string',
-            default: '#444444'
+            default: '#8a8a8a'
+        },
+        textBackgroundColor: {
+            type: 'string',
+            default: '#fff'
+        },
+        backgroundColor: {
+            type: 'string',
+            default: '#f4f6f6'
+        },
+        titleColor: {
+            type: 'string',
+            default: '#525252'
+        },
+        designationColor: {
+            type: 'string',
+            default: '#FF5722'
+        },
+        quoteBackgroundColor: {
+            type: 'string',
+            default: '#FF5722'
         },
     },
 
@@ -136,7 +157,43 @@ registerBlockType('gutenberg-blocks/testimonials', {
                             />
                         </PanelBody>
                         <PanelBody
-                            title={__('Testimonial Body')}
+                            title={__('Testimonial')}
+                        >
+                            <p>Background Color</p>
+                            <ColorPalette
+                                value={props.attributes.backgroundColor}
+                                onChange={(colorValue) => props.setAttributes({ backgroundColor: colorValue })}
+                                allowReset
+                            />
+                            <p>Quote Background Color</p>
+                            <ColorPalette
+                                value={props.attributes.quoteBackgroundColor}
+                                onChange={(colorValue) => props.setAttributes({ quoteBackgroundColor: colorValue })}
+                                allowReset
+                            />
+                        </PanelBody>
+                        <PanelBody
+                            title={__('Title')}
+                        >
+                            <p>Font Color</p>
+                            <ColorPalette
+                                value={props.attributes.titleColor}
+                                onChange={(colorValue) => props.setAttributes({ titleColor: colorValue })}
+                                allowReset
+                            />
+                        </PanelBody>
+                        <PanelBody
+                            title={__('Designation')}
+                        >
+                            <p>Font Color</p>
+                            <ColorPalette
+                                value={props.attributes.designationColor}
+                                onChange={(colorValue) => props.setAttributes({ designationColor: colorValue })}
+                                allowReset
+                            />
+                        </PanelBody>
+                        <PanelBody
+                            title={__('Description')}
                         >
                             <p>Font Color</p>
                             <ColorPalette
@@ -148,37 +205,52 @@ registerBlockType('gutenberg-blocks/testimonials', {
                     </InspectorControls>
                 ),
 
-                <div className={ mainClasses }>
+                <div className={ mainClasses }
+                     style={{
+                    backgroundColor: props.attributes.backgroundColor,
+                }}
+                >
                     { [ 1, 2, 3 ].map( i => {
                         const title = attributes[ `title${ i }` ]
                         const description = attributes[ `description${ i }` ]
                         const post = attributes[ `post${ i }` ]
                         return (
-                                <div className="testimonial-wrapper">
+                                <div id="testimonial-slider" className="testimonial-wrapper">
                                     <div className={`testimonial testimonial_${i}`}>
                                         <div class="testimonial-content">
-                                            <div class="testimonial-icon">
+                                            <div class="testimonial-icon" style={{
+                                                backgroundColor: props.attributes.quoteBackgroundColor,
+                                            }}>
                                                 <span class="dashicons dashicons-editor-quote"></span>
                                             </div>
 
                                     <RichText
+                                        style={{
+                                            color: props.attributes.textColor,
+                                        }}
                                         tagName="p"
                                         className="description"
                                         value={ attributes[ `description${ i }` ] }
                                         onChange={ description => setAttributes( { [ `description${ i }` ]: description } ) }
-                                        placeholder={ __( 'Some feature description for an awesome feature' ) }
+                                        placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.' ) }
                                         keepPlaceholderOnFocus
                                     />
                                         </div>
                                         <RichText
+                                            style={{
+                                                color: props.attributes.titleColor,
+                                            }}
                                             tagName="h3"
                                             className="title"
                                             value={ attributes[ `title${ i }` ] }
                                             onChange={ title => setAttributes( { [ `title${ i }` ]: title } ) }
-                                            placeholder={ __( 'Feature Title' ) }
+                                            placeholder={ __( 'Name' ) }
                                             keepPlaceholderOnFocus
                                         />
                                             <RichText
+                                                style={{
+                                                    color: props.attributes.designationColor,
+                                                }}
                                                 tagName="span"
                                                 className="post"
                                                 value={ attributes[ `post${ i }` ] }
@@ -214,17 +286,24 @@ registerBlockType('gutenberg-blocks/testimonials', {
 
 
         return (
-            <div className={ mainClasses }>
+            <div className={ mainClasses }  style={{
+                backgroundColor: props.attributes.backgroundColor,
+            }}>
                 { range( 1, column + 1 ).map( i => {
                     return (
-                        <div  className="testimonial-wrapper" key={ i }>
+                        <div id="testimonial-slider" className="testimonial-wrapper" key={ i }>
                             <div class="testimonial testimonial_1">
                                 <div class="testimonial-content">
-                                    <div class="testimonial-icon">
+                                    <div class="testimonial-icon" style={{
+                                        backgroundColor: props.attributes.quoteBackgroundColor,
+                                    }}>
                                         <span class="dashicons dashicons-editor-quote"></span>
                                     </div>
                                     { ! RichText.isEmpty( attributes[ `description${ i }` ] ) && (
                                         <RichText.Content
+                                            style={{
+                                                color: props.attributes.textColor,
+                                            }}
                                             tagName="p"
                                             className="description"
                                             value={attributes[ `description${ i }` ] }
@@ -233,6 +312,9 @@ registerBlockType('gutenberg-blocks/testimonials', {
                                 </div>
                             { ! RichText.isEmpty( attributes[ `title${ i }` ] ) && (
                                 <RichText.Content
+                                    style={{
+                                        color: props.attributes.titleColor,
+                                    }}
                                     tagName="h3"
                                     className="title"
                                     value={ attributes[ `title${ i }` ] }
@@ -242,6 +324,9 @@ registerBlockType('gutenberg-blocks/testimonials', {
                             { ! RichText.isEmpty( attributes[ `post${ i }` ] ) && (
                                 <p>
                                     <RichText.Content
+                                        style={{
+                                            color: props.attributes.designationColor,
+                                        }}
                                         tagName="span"
                                         value={ attributes[ `post${ i }` ] }
                                         className="post"
