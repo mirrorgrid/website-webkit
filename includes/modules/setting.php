@@ -39,7 +39,7 @@ if (isset($_GET['tab'])) {
                         foreach ($post_type as $post_value) {
                             ?>
                             <option value="<?php echo $post_value; ?>"
-                                    <?php if (in_array($post_value, $enabledType)){ ?>selected <?php } ?>><?php echo esc_html_e(str_replace('_', ' ', ucwords(str_replace('-', ' ', $post_value)))); ?></option>
+                                    <?php if (in_array($post_value, $enabledType) || $post_value=='post' && $enabledType == null || $post_value=='page' && $enabledType == null){ ?>selected <?php } ?>><?php echo esc_html_e(str_replace('_', ' ', ucwords(str_replace('-', ' ', $post_value)))); ?></option>
                         <?php } ?>
                     </optgroup>
                     <optgroup label="Taxonomies">
@@ -50,7 +50,7 @@ if (isset($_GET['tab'])) {
                     </optgroup>
                     <optgroup label="Users">
                         <option value="users"
-                                <?php if (in_array('users', $enabledType)){ ?>selected <?php } ?>><?php esc_html_e('User', 'website-webkit'); ?></option>
+                                <?php if (in_array('users', $enabledType) || $enabledType == null){ ?>selected <?php } ?>><?php esc_html_e('User', 'website-webkit'); ?></option>
                     </optgroup>
                     <optgroup label="Media">
                         <option value="media"
@@ -121,12 +121,16 @@ if (isset($_GET['tab'])) {
             <?php if (count(get_option('mww_gutenberg_blocks', [])) !== 0) { ?>
                 <?php foreach (get_option('mww_gutenberg_blocks', array()) as $block) { ?>
                     <tr class="gutenberg_blocks_collection__item <?php echo $block['active'] ? 'active' : ''; ?>">
-                        <td class="title block_name" data-id="<?php echo esc_html($block['name']); ?>">
+                        <td class="title block_name switch" data-id="<?php echo esc_html($block['name']); ?>">
                             <strong><a class="row-title"
                                        href="#"><?php printf(esc_html__('%s', 'gutenberg-blocks'), $block['label']); ?></a></strong>
                         </td>
                         <td>
-                            <input type="checkbox" name="gutenberg_block_status" <?php echo $block['active'] ? 'checked' : ''; ?>>
+                            <label class="gutenberg-blocks-switch-input">
+                                <input type="checkbox" name="gutenberg_block_status" <?php echo $block['active'] ? 'checked' : ''; ?>>
+                            <span class="gutenberg-blocks-switch-input-slider"></span>
+                                <img class="gutenberg-loader hidden" src="<?php echo esc_url(MWW()->plugin_url() . '/assets/images/loader/loader.gif'); ?>">
+
                         </td>
                     </tr>
                 <?php } ?>

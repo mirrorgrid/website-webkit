@@ -88,11 +88,11 @@ function mww_register_modules()
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
                 'icon' => 'webkit-id.png'
             ),
-            'social-icons' => array(
+            /*'social-icons' => array(
                 'name' => __('Social Icon', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
                 'icon' => 'social.png'
-            ),
+            ),*/
 
             'gutenberg-blocks' => array(
                 'name' => __('Gutenberg Blocks', 'website-webkit'),
