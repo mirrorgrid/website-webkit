@@ -8,9 +8,10 @@
  * All blocks should be included here since this is the file that
  * Webpack is compiling as the input file.
  */
-
 import './blocks/testimonials/block';
 import './blocks/button/block';
 import './blocks/star-rating/block';
 import './blocks/tabbed-content/block';
 import './blocks/accordion/block';
+import './blocks/blog-post/block';
+

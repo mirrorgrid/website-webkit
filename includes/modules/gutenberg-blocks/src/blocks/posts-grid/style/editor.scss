@@ -1,0 +1,14 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+**/
+
+.bokez-posts-grid{
+	._entry_bokez{	
+		._entry_meta_bokez{
+			opacity: 0.8;
+		}
+	}
+}

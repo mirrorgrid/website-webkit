@@ -8,6 +8,8 @@
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
+    "@wordpress/hooks": "^2.0.5",
+    "@wordpress/html-entities": "^2.0.4",
     "ajv": ">=6.0.0",
     "cgb-scripts": "1.13.0",
     "react": "16.2.0",
@@ -22,6 +24,4 @@
     "gulp-sort": "^2.0.0",
     "gulp-wp-pot": "^2.0.4"
   }
-
-
 }

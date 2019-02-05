@@ -74,4 +74,7 @@ function gutenberg_blocks_cgb_block_assets() {
 add_action( 'enqueue_block_assets', 'gutenberg_blocks_cgb_block_assets' );
 // Tabbed Content Block.
 require_once plugin_dir_path( __FILE__ ) . 'blocks/tabbed-content/block.php';
+
+require_once plugin_dir_path( __FILE__ ) . 'blocks/blog-post/index.php';
+
 // Progress Bar Block.

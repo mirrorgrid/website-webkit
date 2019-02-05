@@ -112,7 +112,7 @@ class MWW_Gutenberg_Blocks
     public static function blocks() {
 
         return [
-           array(
+          array(
                 'label'  => 'Testimonials',
                 'name'   => 'gutenberg-blocks/testimonials',
                 'active' => true,
@@ -137,6 +137,11 @@ class MWW_Gutenberg_Blocks
                 'name'   => 'gutenberg-blocks/accordion',
                 'active' => true,
             ),
+            array(
+                'label'  => 'Blog Post',
+                'name'   => 'gutenberg-blocks/blog-post',
+                'active' => true,
+            ),
         ];
     }
 
@@ -155,6 +160,7 @@ class MWW_Gutenberg_Blocks
 
     }
 }
+
 
 
 new MWW_Gutenberg_Blocks();

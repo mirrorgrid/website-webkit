@@ -1,0 +1,175 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+**/
+
+.bokez-posts-grid{
+	display: flex;
+	flex-wrap: wrap;
+
+	._entry_bokez{
+		padding: 0 15px 35px;
+	
+		a{
+			text-decoration: none;
+			display: block;
+		}
+	
+		img{
+			margin: 0 auto;
+			width: auto !important;
+			height: auto !important;
+			display: block;
+			backface-visibility: hidden; /** fixes hover move issue **/
+			transition: opacity 0.3s;
+		}
+	
+		._entry_thumbnail_bokez{
+			background-color: #342D5D;
+
+			a:hover{
+				text-decoration: none !important;
+			}
+		}
+	
+		&._has_thumbnail_bokez:hover{
+			img{
+				opacity: 0.8;
+			}
+		}
+
+		._entry_content_bokez{
+			padding: 0 10px;
+			color: #2d2d2d;
+		}
+	
+		h3{
+			margin: 0;
+			padding: 10px 0;
+			font-size: 1.2rem;
+			line-height: 1.4;
+			color: inherit;
+			transition: opacity 0.3s;
+	
+			a{
+				color: inherit;
+			}
+	
+			&:hover {
+				opacity: 0.8;
+	
+				a{
+					text-decoration: underline;
+				}
+			}
+		}
+	
+		._entry_meta_bokez{
+			padding-top: 10px;
+			font-size: 1rem;
+			color: inherit;
+		}
+	
+	}
+
+	&._1_columns_bokez ._entry_bokez,
+	&._2_columns_bokez ._entry_bokez,
+	&._3_columns_bokez ._entry_bokez,
+	&._4_columns_bokez ._entry_bokez,
+	&._5_columns_bokez ._entry_bokez{
+		flex: 0 0 100%;
+	}
+	
+}
+
+@media screen and ( min-width: $mobile ) {
+	.bokez-posts-grid{
+
+		&._2_columns_bokez ._entry_bokez,
+		&._3_columns_bokez ._entry_bokez,
+		&._4_columns_bokez ._entry_bokez,
+		&._5_columns_bokez ._entry_bokez{
+			flex: 0 0 50%;
+
+			h3{
+				font-size: 1rem;
+			}
+		
+			._entry_meta_bokez{
+				font-size: 0.8rem;
+			}
+		}
+
+	}
+}
+
+@media screen and ( min-width: $tablet ) {
+
+	.bokez-posts-grid{
+
+		&._2_columns_bokez ._entry_bokez{
+
+			h3{
+				font-size: 1.1rem;
+			}
+		
+			._entry_meta_bokez{
+				font-size: 0.9rem;
+			}
+		}
+
+		&._3_columns_bokez ._entry_bokez{
+			flex: 0 0 50%;
+		}
+
+		&._4_columns_bokez ._entry_bokez,
+		&._5_columns_bokez ._entry_bokez{
+			flex: 0 0 33.3332%;
+		}
+	}
+
+}
+
+@media screen and ( min-width: $desktop ) {
+
+	.bokez-posts-grid{
+
+		&._1_columns_bokez ._entry_bokez{
+			flex: 0 0 100%;
+			padding: 0 0 70px;
+		}
+
+		&._2_columns_bokez ._entry_bokez{
+			flex: 0 0 50%;
+		}
+
+		&._3_columns_bokez ._entry_bokez{
+			flex: 0 0 33.3332%;
+		}
+
+		&._4_columns_bokez ._entry_bokez{
+			flex: 0 0 25%;
+
+			h3{
+				font-size: 1rem;
+			}
+		
+			._entry_meta_bokez{
+				font-size: 0.8rem;
+			}
+		}
+
+		&._5_columns_bokez ._entry_bokez{
+			flex: 0 0 20%;
+
+			h3{
+				font-size: 0.9rem;
+			}
+		
+			._entry_meta_bokez{
+				font-size: 0.8rem;
+			}
+		}
+	}
+}
