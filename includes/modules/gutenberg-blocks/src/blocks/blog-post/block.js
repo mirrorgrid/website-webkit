@@ -135,17 +135,17 @@ registerBlockType('gutenberg-blocks/blog-post', {
                 <div
                     className={ '_entry_gutenberg_blocks' + ( post.featured_image_src ? ' _has_thumbnail_gutenberg_blocks' : '' ) }
                     href={ post.link }>
-
+                    <div className="gutenberg_blocks_blog_title">
+                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
+                    </div>
 
                     <div className={ "_entry_content_gutenberg_blocks" }
                          style={{'background-color': bgColor, 'color': textColor}}>
 
                         <div className={ "_entry_meta_gutenberg_blocks" }>{ post.date_formated }
-                            <span>{ post.comments_num }</span>
+                            <span> { post.comments_num }</span>
                         </div>
-                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
 
-                        <span>{ post.author_info }</span>
                         { post.featured_image_src &&
                         <div className={ "_entry_thumbnail_gutenberg_blocks" }>
                             <a href={"#"} rel={ "bookmark" }>
@@ -155,7 +155,7 @@ registerBlockType('gutenberg-blocks/blog-post', {
                         }
                         <span>{post.excerptData}</span>
 
-                        </div>
+                    </div>
 
                 </div>
             )
@@ -265,17 +265,17 @@ registerBlockType('gutenberg-blocks/blog-post', {
                 <div
                     className={ '_entry_gutenberg_blocks' + ( post.featured_image_src ? ' _has_thumbnail_gutenberg_blocks' : '' ) }
                     href={ post.link }>
-
+                    <div className="gutenberg_blocks_blog_title">
+                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
+                    </div>
 
                     <div className={ "_entry_content_gutenberg_blocks" }
                          style={{'background-color': bgColor, 'color': textColor}}>
 
                         <div className={ "_entry_meta_gutenberg_blocks" }>{ post.date_formated }
-                            <span>{ post.comments_num }</span>
+                            <span> { post.comments_num }</span>
                         </div>
-                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
 
-                        <span>{ post.author_info }</span>
                         { post.featured_image_src &&
                         <div className={ "_entry_thumbnail_gutenberg_blocks" }>
                             <a href={"#"} rel={ "bookmark" }>

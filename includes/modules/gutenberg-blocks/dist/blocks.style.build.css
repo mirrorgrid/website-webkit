@@ -569,6 +569,7 @@
           text-decoration: underline; }
     .gutenberg-blocks-posts-grid ._entry_gutenberg_blocks ._entry_meta_gutenberg_blocks {
       padding-top: 10px;
+      display: inline-block;
       font-size: 1rem;
       color: inherit; }
   .gutenberg-blocks-posts-grid._1_columns_gutenberg_blocks ._entry_gutenberg_blocks,
@@ -635,3 +636,6 @@
       font-size: 0.9rem; }
     .gutenberg-blocks-posts-grid._5_columns_gutenberg_blocks ._entry_gutenberg_blocks ._entry_meta_gutenberg_blocks {
       font-size: 0.8rem; } }
+
+._entry_meta_gutenberg_blocks {
+  display: inline-block; }

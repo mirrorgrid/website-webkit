@@ -10,12 +10,12 @@
 
 	._entry_gutenberg_blocks{
 		padding: 0 15px 35px;
-	
+
 		a{
 			text-decoration: none;
 			display: block;
 		}
-	
+
 		img{
 			margin: 0 auto;
 			width: auto !important;
@@ -24,7 +24,7 @@
 			backface-visibility: hidden; /** fixes hover move issue **/
 			transition: opacity 0.3s;
 		}
-	
+
 		._entry_thumbnail_gutenberg_blocks{
 			background-color: #342D5D;
 
@@ -32,7 +32,7 @@
 				text-decoration: none !important;
 			}
 		}
-	
+
 		&._has_thumbnail_gutenberg_blocks:hover{
 			img{
 				opacity: 0.8;
@@ -43,7 +43,7 @@
 			padding: 0 10px;
 			color: #2d2d2d;
 		}
-	
+
 		h3{
 			margin: 0;
 			padding: 10px 0;
@@ -51,26 +51,27 @@
 			line-height: 1.4;
 			color: inherit;
 			transition: opacity 0.3s;
-	
+
 			a{
 				color: inherit;
 			}
-	
+
 			&:hover {
 				opacity: 0.8;
-	
+
 				a{
 					text-decoration: underline;
 				}
 			}
 		}
-	
+
 		._entry_meta_gutenberg_blocks{
 			padding-top: 10px;
+			display: inline-block;
 			font-size: 1rem;
 			color: inherit;
 		}
-	
+
 	}
 
 	&._1_columns_gutenberg_blocks ._entry_gutenberg_blocks,
@@ -172,4 +173,8 @@
 			}
 		}
 	}
+}
+
+._entry_meta_gutenberg_blocks{
+	display: inline-block;
 }

@@ -6,7 +6,6 @@
  */
 
 function gutenberg_blocks_render_block_posts_grid( $attributes ) {
-
 	$recent_posts = wp_get_recent_posts( array(
         'numberposts' => $attributes['postsNumber'],
         'post_status' => 'publish',
@@ -48,7 +47,7 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
                 <a href="' .esc_url( get_permalink( $post->ID ) ). '">' .esc_html( get_the_title( $post->ID ) ). '</a>
             </h3>';
 
-        $date = '<div class="_entry_meta_gutenberg_bocks">' .get_the_date( '', $post->ID ). '</div>';
+        $date = '<div class="_entry_meta_gutenberg_blocks">' .get_the_date( '', $post->ID ). '</div>';
 
 
         // Comments.
@@ -70,7 +69,7 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
             $excerpt = gutenberg_blocks__get_excerpt( $post->ID, $post );
             if ( ! empty( $excerpt ) ) {
                 $excerpt = sprintf(
-                    '<div class="ugb-blog-posts__excerpt">%s</div>',
+                    '<div class="gutenberg-blocks-blog-posts__excerpt">%s</div>',
                     wp_kses_post( $excerpt )
                 );
             }
@@ -78,10 +77,11 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
 
         $output .= '
             <div class="_entry_gutenberg_bocks ' .$post_thumb_class. '" >
-                '.$thumbnail.'
+                '. $post_title.'
                 <div class="_entry_content_gutenberg_bocks" style="background-color:'.$attributes['bgColor'].'; color:'.$attributes['textColor'].';">
                     '.$date.' '.$comments.'
-                    '.$post_title.'
+                      <div class="'.$post_thumb_class. '" >
+                    '.$thumbnail.'
                     '.$excerpt.'
                 </div>
             </div>';
