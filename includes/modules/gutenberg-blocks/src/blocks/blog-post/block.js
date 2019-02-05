@@ -130,7 +130,6 @@ registerBlockType('gutenberg-blocks/blog-post', {
 
         // prepare Posts Output
         const output = posts.map(function (post) {
-            debugger;
             return (
                 <div
                     className={ '_entry_gutenberg_blocks' + ( post.featured_image_src ? ' _has_thumbnail_gutenberg_blocks' : '' ) }

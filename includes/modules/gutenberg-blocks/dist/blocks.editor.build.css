@@ -267,5 +267,7 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
 **/
-.gutenberg-blocks-posts-grid ._entry_gutenberg_blocks ._entry_meta_gutenberg_blocks {
-  opacity: 0.8; }
+.gutenberg-blocks-posts-grid ._entry_gutenberg_blocks {
+  display: grid !important; }
+  .gutenberg-blocks-posts-grid ._entry_gutenberg_blocks ._entry_meta_gutenberg_blocks {
+    opacity: 0.8; }

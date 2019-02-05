@@ -43,9 +43,9 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
 		}
 
         $post_title = '
-            <h3>
+            <h5>
                 <a href="' .esc_url( get_permalink( $post->ID ) ). '">' .esc_html( get_the_title( $post->ID ) ). '</a>
-            </h3>';
+            </h5>';
 
         $date = '<div class="_entry_meta_gutenberg_blocks">' .get_the_date( '', $post->ID ). '</div>';
 
@@ -76,9 +76,9 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
         }
 
         $output .= '
-            <div class="_entry_gutenberg_bocks ' .$post_thumb_class. '" >
-                '. $post_title.'
-                <div class="_entry_content_gutenberg_bocks" style="background-color:'.$attributes['bgColor'].'; color:'.$attributes['textColor'].';">
+            <div class="_entry_gutenberg_blocks'.'" >
+                <div class="_entry_content_gutenberg_blocks" style="background-color:'.$attributes['bgColor'].'; color:'.$attributes['textColor'].';">
+                     '. $post_title.'
                     '.$date.' '.$comments.'
                       <div class="'.$post_thumb_class. '" >
                     '.$thumbnail.'

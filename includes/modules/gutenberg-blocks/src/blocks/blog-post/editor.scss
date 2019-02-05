@@ -7,6 +7,7 @@
 
 .gutenberg-blocks-posts-grid{
 	._entry_gutenberg_blocks{
+		display: grid!important;
 		._entry_meta_gutenberg_blocks{
 			opacity: 0.8;
 		}

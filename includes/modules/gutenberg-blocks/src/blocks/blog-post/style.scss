@@ -9,7 +9,8 @@
 	flex-wrap: wrap;
 
 	._entry_gutenberg_blocks{
-		padding: 0 15px 35px;
+		display: -webkit-inline-box;
+
 
 		a{
 			text-decoration: none;
@@ -177,4 +178,14 @@
 
 ._entry_meta_gutenberg_blocks{
 	display: inline-block;
+}
+
+
+._entry_content_gutenberg_blocks
+{
+
+	width: 300px;
+	border: 1px;
+	padding: 25px;
+	margin: 25px;
 }
