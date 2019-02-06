@@ -84,6 +84,7 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
                     '.$thumbnail.'
                     '.$excerpt.'
                 </div>
+               </div>
             </div>';
 
     }
@@ -220,7 +221,7 @@ function gutenberg_blocks_posts_grid_get_date_formated( $object, $field_name, $r
 function gutenberg_blocks_blog_post_excerpt( $object, $field_name, $request ) {
     $excerpt = get_the_excerpt($object['excerpt']);
     if ( ! empty( $excerpt ) ) {
-        return trim_excerpt($excerpt);
+        return trim_excerpt(strip_tags($excerpt));
     }
 }
 

@@ -9,8 +9,7 @@
 	flex-wrap: wrap;
 
 	._entry_gutenberg_blocks{
-		display: -webkit-inline-box;
-
+		padding: 0 15px 35px;
 
 		a{
 			text-decoration: none;
@@ -82,10 +81,10 @@
 	&._5_columns_gutenberg_blocks ._entry_gutenberg_blocks{
 		flex: 0 0 100%;
 	}
-	
+
 }
 
-@media screen and ( min-width: 786px ) {
+@media screen and ( min-width: 320px  ) {
 	.gutenberg-blocks-posts-grid{
 
 		&._2_columns_gutenberg_blocks ._entry_gutenberg_blocks,
@@ -97,16 +96,17 @@
 			h3{
 				font-size: 1rem;
 			}
-		
+
 			._entry_meta_gutenberg_blocks{
 				font-size: 0.8rem;
+				    display: inline-block;display: inline-block;
 			}
 		}
 
 	}
 }
 
-@media screen and ( min-width: 1080px ) {
+@media screen and ( min-width: 768px ) {
 
 	.gutenberg-blocks-posts-grid{
 
@@ -115,9 +115,10 @@
 			h3{
 				font-size: 1.1rem;
 			}
-		
+
 			._entry_meta_gutenberg_blocks{
 				font-size: 0.9rem;
+				display: inline-block;
 			}
 		}
 
@@ -133,7 +134,7 @@
 
 }
 
-@media screen and ( min-width: 960px ) {
+@media screen and ( min-width: 992px ) {
 
 	.gutenberg-blocks-posts-grid{
 
@@ -156,9 +157,10 @@
 			h3{
 				font-size: 1rem;
 			}
-		
+
 			._entry_meta_gutenberg_blocks{
 				font-size: 0.8rem;
+				display: inline-block;
 			}
 		}
 
@@ -168,24 +170,11 @@
 			h3{
 				font-size: 0.9rem;
 			}
-		
+
 			._entry_meta_gutenberg_blocks{
 				font-size: 0.8rem;
+				display: inline-block;
 			}
 		}
 	}
-}
-
-._entry_meta_gutenberg_blocks{
-	display: inline-block;
-}
-
-
-._entry_content_gutenberg_blocks
-{
-
-	width: 300px;
-	border: 1px;
-	padding: 25px;
-	margin: 25px;
 }

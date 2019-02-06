@@ -133,14 +133,15 @@ registerBlockType('gutenberg-blocks/blog-post', {
             return (
                 <div
                     className={ '_entry_gutenberg_blocks' + ( post.featured_image_src ? ' _has_thumbnail_gutenberg_blocks' : '' ) }
-                    href={ post.link }>
-                    <div className="gutenberg_blocks_blog_title">
-                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
-                    </div>
+                    href={ post.link } >
+
 
                     <div className={ "_entry_content_gutenberg_blocks" }
-                         style={{'background-color': bgColor, 'color': textColor}}>
-
+                         style={{'background-color': bgColor, 'color': textColor}}
+                         >
+                        <div className="gutenberg_blocks_blog_title">
+                            <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
+                        </div>
                         <div className={ "_entry_meta_gutenberg_blocks" }>{ post.date_formated }
                             <span> { post.comments_num }</span>
                         </div>
@@ -263,14 +264,15 @@ registerBlockType('gutenberg-blocks/blog-post', {
             return (
                 <div
                     className={ '_entry_gutenberg_blocks' + ( post.featured_image_src ? ' _has_thumbnail_gutenberg_blocks' : '' ) }
-                    href={ post.link }>
-                    <div className="gutenberg_blocks_blog_title">
-                        <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
-                    </div>
+                    href={ post.link } >
+
 
                     <div className={ "_entry_content_gutenberg_blocks" }
-                         style={{'background-color': bgColor, 'color': textColor}}>
-
+                         style={{'background-color': bgColor, 'color': textColor}}
+                    >
+                        <div className="gutenberg_blocks_blog_title">
+                            <h3><a href={ "#" }>{ post.title.rendered }</a></h3>
+                        </div>
                         <div className={ "_entry_meta_gutenberg_blocks" }>{ post.date_formated }
                             <span> { post.comments_num }</span>
                         </div>
