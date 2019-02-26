@@ -16,8 +16,11 @@
                     <?php esc_html_e('Activate', 'website-webkit'); ?></button>
                     <button class="button deactivate button-secondary" <?php if (!mwww_has_activate_module($module_key)) { ?> style="display: none;" <?php } ?>
                        type="button" onclick="mww_deactivate('<?php echo $module_key ?>','<?php echo wp_create_nonce('mww-ajax-nonce');?>',this)"><?php esc_html_e('Deactivate', 'website-webkit'); ?></button>
-                    <a class="button"
-                       href="<?php admin_url();?>admin.php?page=setting&tab=<?php echo $module_key ?>"><?php esc_html_e('Settings', 'website-webkit'); ?></a>
+                <?php if ($module['setting'] == true){?>
+                <a class="button"
+                       href="<?php admin_url();?>admin.php?page=setting&tab=<?php echo $module_key ?>"><?php esc_html_e('Settings', 'website-webkit'); ?>
+                </a>
+                <?php } ?>
 
             </div>
         </div>

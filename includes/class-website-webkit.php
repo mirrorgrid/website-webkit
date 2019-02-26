@@ -13,7 +13,6 @@ final class Website_Webkit
     protected static $_instance = null;
 
 
-
     public static function instance()
     {
         if (is_null(self::$_instance)) {
@@ -36,9 +35,11 @@ final class Website_Webkit
      */
     private function init_hooks()
     {
-        add_action('init', array($this, 'include_modules'));
-        add_action('admin_enqueue_scripts',array($this, 'script_register'));
-        add_action( 'plugins_loaded', array($this,'load_plugin_textdomain' ));
+        /*add_action('init', array($this, 'include_modules'));*/
+        $this->include_modules();
+        add_action('admin_enqueue_scripts', array($this, 'script_register'));
+        add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
+
 
     }
 
@@ -130,6 +131,7 @@ final class Website_Webkit
 
         include_once MWW_ABSPATH . 'includes/functions.php';
 
+
         if (!empty($this->is_request('admin'))) {
             include_once MWW_ABSPATH . 'includes/admin/admin-functions.php';
 
@@ -168,6 +170,8 @@ final class Website_Webkit
         wp_enqueue_script('select2-js', esc_url(MWW()->plugin_url()) . '/assets/js/select2.full.min.js');
         wp_enqueue_style('select2-style', esc_url(MWW()->plugin_url()) . '/assets/css/select2.min.css');
         wp_localize_script('jquery', 'mww_website_ids_global_object', array('ajax_url' => admin_url('admin-ajax.php')));
+        wp_tinymce_inline_scripts();
+        wp_enqueue_editor();
 
     }
 
@@ -202,12 +206,13 @@ final class Website_Webkit
         return apply_filters('website_webkit_template_path', 'website_webkit_');
     }
 
-    public function load_plugin_textdomain() {
+    public function load_plugin_textdomain()
+    {
 
         load_plugin_textdomain(
             'website-webkit',
             false,
-            dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
         );
 
     }

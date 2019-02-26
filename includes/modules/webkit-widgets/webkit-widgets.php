@@ -13,9 +13,8 @@ class MWW_Webkit_Widgets
     function mww_register_widget()
     {
         require_once 'widget-functions.php';
-        require_once 'widget-text.php';
-
-        register_widget('MWW_Widget_Text');
+        require_once 'widget-block.php';
+        register_widget('MWW_Widget_Block');
     }
 
 

@@ -13,10 +13,11 @@ if (isset($_GET['tab'])) {
         <?php $activeModule = mww_get_active_modules();
         if (!empty($activeModule)) {
             foreach ($activeModule as $module) {
-                ?>
+                if(checkHasSetting($module)){
+                    ?>
                 <a href="<?php echo admin_url(); ?>admin.php?page=setting&amp;tab=<?php echo $module; ?>"
                    class="nav-tab <?php echo $active_tab == $module ? 'nav-tab-active' : ''; ?>"><?php echo esc_html(ucwords(str_replace('-', ' ', $module))) ?></a>
-            <?php }
+            <?php }}
         } ?>
     </nav>
 <?php if ($active_tab == 'webkit-ids' && in_array('webkit-ids', mww_get_active_modules())) { ?>

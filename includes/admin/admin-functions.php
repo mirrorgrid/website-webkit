@@ -86,18 +86,20 @@ function mww_register_modules()
             'webkit-ids' => array(
                 'name' => __('Webkit IDS', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
-                'icon' => 'webkit-id.png'
+                'icon' => 'webkit-id.png',
+                'setting' => true,
             ),
-            /*'social-icons' => array(
-                'name' => __('Social Icon', 'website-webkit'),
-                'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
-                'icon' => 'social.png'
-            ),*/
-
             'gutenberg-blocks' => array(
                 'name' => __('Gutenberg Blocks', 'website-webkit'),
                 'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
-                'icon' => 'gutenberg.png'
+                'icon' => 'gutenberg.png',
+                'setting' => true,
+            ),
+            'webkit-widgets' => array(
+                'name' => __('Gutenberg Block Reusable Widgets', 'website-webkit'),
+                'description' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut', 'website-webkit'),
+                'icon' => 'widget-icon.png',
+                'setting' => false,
             )
 
 
@@ -152,14 +154,24 @@ function mwww_deactivate_module($module_id)
 function mww_get_modules()
 {
     $register_modules = mww_register_modules();
-    $available_modules = array();
     foreach ($register_modules as $module_key => $modules) {
         $class_name = 'MWW_' . str_replace(' ', '_', ucwords(str_replace('-', ' ', $module_key)));
         if (file_exists(MWW_PLUGIN_MODULES_PATH . $module_key . '/' . $module_key . '.php')) {
             $available_modules[$module_key] = $modules;
         }
     }
+
     return apply_filters('mg-mww-available-modules', $available_modules);
+}
+
+function checkHasSetting($moduleSetting)
+{
+    $modules = mww_get_modules();
+    if ($modules[$moduleSetting]['setting']==1){
+        return true;
+    }
+
+
 }
 
 

@@ -1,14 +1,15 @@
 <?php
-if (!function_exists('gutenberg_blocks_dropdown')) :
-    function gutenberg_blocks_dropdown()
-    {
-        $gutenbergBlocks = get_option( 'mww_gutenberg_blocks', array());
-        $gutenberg_blocks_dropdown['0'] = esc_html__('Select Blocks', 'widget_blocks');
-        foreach ($gutenbergBlocks as $key=> $gutenberg_blocks) {
-            $gutenberg_blocks_dropdown[$key] = $gutenberg_blocks['label'];
-        }
+if (!function_exists('mww_gutenberg_blocks_widget')) :
+    function mww_gutenberg_blocks_widget() {
+        global $wpdb;
 
-        return $gutenberg_blocks_dropdown;
+        $blocks  = $wpdb->get_results("SELECT ID, post_title, post_parent FROM $wpdb->posts WHERE post_type = 'wp_block' AND post_status = 'publish' ORDER BY post_title ASC ");
+
+        // Let's let devs alter that value coming in
+        $blocks = apply_filters( 'gutenberg_reusable_blocks_widget_before', $blocks );
+        update_option( 'gutenberg_reusable_blocks_widgetopts', $blocks );
+
+        return apply_filters( 'gutenberg_reusable_blocks_widget_get', $blocks );
     }
 endif;
 
