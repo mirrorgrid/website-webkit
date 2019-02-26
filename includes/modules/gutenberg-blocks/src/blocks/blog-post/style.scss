@@ -10,6 +10,8 @@
 
 	._entry_gutenberg_blocks{
 		padding: 0 15px 35px;
+		display: grid;
+
 
 		a{
 			text-decoration: none;
@@ -73,14 +75,22 @@
 		}
 
 	}
-
-	&._1_columns_gutenberg_blocks ._entry_gutenberg_blocks,
-	&._2_columns_gutenberg_blocks ._entry_gutenberg_blocks,
-	&._3_columns_gutenberg_blocks ._entry_gutenberg_blocks,
-	&._4_columns_gutenberg_blocks ._entry_gutenberg_blocks,
-	&._5_columns_gutenberg_blocks ._entry_gutenberg_blocks{
+	&._1_columns_gutenberg_blocks ._entry_gutenberg_blocks{
 		flex: 0 0 100%;
 	}
+	&._2_columns_gutenberg_blocks ._entry_gutenberg_blocks
+	{
+		flex: 0 0 50%;
+	}
+	&._3_columns_gutenberg_blocks ._entry_gutenberg_blocks{
+		flex: 0 0 33%;
+	}
+
+	&._4_columns_gutenberg_blocks ._entry_gutenberg_blocks,
+	&._5_columns_gutenberg_blocks ._entry_gutenberg_blocks{
+		flex: 0 0 33.3332%;
+	}
+
 
 }
 

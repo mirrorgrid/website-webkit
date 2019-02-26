@@ -32,10 +32,10 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
         $comments = '';
 
 		if ( $post_thumb_id ) {
-            $post_thumb_class = '_has_thumbnail_gutenberg_bocks';
+            $post_thumb_class = '_has_thumbnail_gutenberg_blocks';
 
             $thumbnail = '
-                <div class="_entry_thumbnail_gutenberg_bocks">
+                <div class="_entry_thumbnail_gutenberg_blocks">
                     <a href="'.esc_url( get_permalink( $post->ID ) ).'" rel="bookmark">
                         '.wp_get_attachment_image( $post_thumb_id, $post_thumb_size ).'
                     </a>
@@ -90,7 +90,7 @@ function gutenberg_blocks_render_block_posts_grid( $attributes ) {
     }
 
 	return sprintf(
-        '<div class="gutenberg-blocks-posts-grid _%2$s_columns_gutenberg_bocks">%1$s</div>',
+        '<div class="gutenberg-blocks-posts-grid _%2$s_columns_gutenberg_blocks">%1$s</div>',
         $output,
         $attributes['columns']
     );
