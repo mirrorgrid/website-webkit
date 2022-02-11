@@ -10,7 +10,7 @@
   "dependencies": {
     "@wordpress/hooks": "^2.0.5",
     "@wordpress/html-entities": "^2.0.4",
-    "ajv": ">=6.0.0",
+    "ajv": ">=6.12.3",
     "cgb-scripts": "1.13.0",
     "react": "16.2.0",
     "react-autosize-textarea": "2.0.0",
